@@ -8,7 +8,7 @@ public final class MemStore<T extends Base> implements Store<T>  {
 
     @Override
     public void add(T model) {
-        storage.put(Integer.toString(storage.size()), model);
+        storage.put(model.getId(), model);
     }
 
     @Override
