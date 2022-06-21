@@ -7,7 +7,7 @@ import java.util.Optional;
 public class EvenNumbersIterator implements Iterator<Integer> {
 
     private int[] data;
-    private int index = -1;
+    private int index = 0;
 
     public EvenNumbersIterator(int[] data) {
         this.data = data;
@@ -15,14 +15,10 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        return nextDiv2Index() == -1 ? false : true;
-    }
-
-    private int nextDiv2Index() {
-        int rsl = -1;
-        for (int i = index + 1; i < data.length; i++) {
+        boolean rsl = false;
+        for (int i = index; i < data.length; i++) {
             if (data[i] % 2 == 0) {
-                rsl = i;
+                rsl = true;
                 break;
             }
         }
@@ -31,17 +27,21 @@ public class EvenNumbersIterator implements Iterator<Integer> {
 
     @Override
     public Integer next() {
-        if (hasNext()) {
-            index = nextDiv2Index();
-            Optional optPointer = Optional.of(data[index]);
-            if (optPointer.isPresent()) {
-                return data[index];
-            } else {
-                return next();
-            }
-
-        } else {
+        if (!hasNext()) {
             throw new NoSuchElementException();
+        } else {
+            for (int i = index; i < data.length; i++) {
+                if (data[i] % 2 == 0) {
+                    index = i;
+                    Optional optPointer = Optional.of(data[index]);
+                    if (optPointer.isPresent()) {
+                        return data[index];
+                    } else {
+                        return next();
+                    }
+                }
+            }
         }
+        throw new NoSuchElementException();
     }
 }
