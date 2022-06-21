@@ -2,6 +2,7 @@ package ru.job4j.iterator;
 
 import java.util.Iterator;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 public class EvenNumbersIterator implements Iterator<Integer> {
 
@@ -32,7 +33,13 @@ public class EvenNumbersIterator implements Iterator<Integer> {
     public Integer next() {
         if (hasNext()) {
             index = nextDiv2Index();
-            return data[index];
+            Optional optPointer = Optional.of(data[index]);
+            if (optPointer.isPresent()) {
+                return data[index];
+            } else {
+                return next();
+            }
+
         } else {
             throw new NoSuchElementException();
         }
