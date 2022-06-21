@@ -33,8 +33,7 @@ public class EvenNumbersIterator implements Iterator<Integer> {
         if (hasNext()) {
             index = nextDiv2Index();
             return data[index];
-        } else
-        {
+        } else {
             throw new NoSuchElementException();
         }
     }
