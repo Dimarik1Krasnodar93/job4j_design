@@ -9,7 +9,6 @@ public class MatrixIt implements Iterator<Integer> {
     private final int[][] data;
     private int row = 0;
     private int column = -1;
-    private int index = 1;
 
     public MatrixIt(int[][] data) {
         this.data = data;
