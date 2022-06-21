@@ -3,12 +3,23 @@ package ru.job4j.iterator;
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.Matchers.is;
 
+import org.hamcrest.core.Is;
 import org.junit.Test;
 
 import java.util.NoSuchElementException;
 
 public class BackwardArrayItTest {
 
+    @Test
+    public void whenMultiCallhasNextThenNext() {
+        BackwardArrayIt it = new BackwardArrayIt(
+                new int[] {1, 2, 3}
+        );
+        assertThat(it.hasNext(), Is.is(true));
+        assertThat(it.hasNext(), Is.is(true));
+        assertThat(it.hasNext(), Is.is(true));
+        assertThat(it.next(), Is.is(3));
+    }
 
     @Test
     public void whenMultiCallhasNextThenTrue() {
