@@ -28,7 +28,11 @@ public class FlatMap<T> implements Iterator<T> {
         if (cursor.hasNext()) {
             rsl = cursor.next();
         } else {
-            rsl = data.next().next();
+            cursor = data.next();
+            if (!cursor.hasNext()) {
+                return next();
+            }
+            rsl = cursor.next();
         }
         return rsl;
     }
