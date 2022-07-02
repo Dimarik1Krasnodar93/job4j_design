@@ -41,16 +41,18 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     @Override
     public T remove(int index) {
+        Objects.checkIndex(index, size);
         T rsl = container[index];
         modCount++;
         System.arraycopy(container, index + 1, container, index, size - index - 1);
-        container[size] = null;
         size--;
+        container[size] = null;
         return rsl;
     }
 
     @Override
     public T get(int index) {
+        Objects.checkIndex(index, size);
         return container[index];
     }
 
@@ -70,7 +72,7 @@ public class SimpleArrayList<T> implements SimpleList<T> {
                 if (modCount != expectedModCount) {
                     throw new ConcurrentModificationException();
                 }
-                return container.length > iPointer && container[iPointer] != null;
+                return size > iPointer  && container[iPointer] != null;
             }
 
             @Override
