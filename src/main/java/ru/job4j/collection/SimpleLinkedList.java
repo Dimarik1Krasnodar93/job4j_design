@@ -35,7 +35,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     transient int size = 0;
     transient Node<E> first;
     transient Node<E> last;
-    Node<E> forIterator;
+    public Node<E> forIterator;
 
     @Override
     public void add(E value) {
@@ -67,9 +67,10 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     public Iterator<E> iterator() {
         return new Iterator<E>() {
             int iPointer = 0;
+            forIterator = null;
             @Override
             public boolean hasNext() {
-                return size > iPointer;
+                return forIterator == null && first != null || forIterator != null && forIterator.next != null;
             }
 
             @Override
