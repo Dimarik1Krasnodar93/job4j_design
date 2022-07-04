@@ -35,6 +35,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     transient int size = 0;
     transient Node<E> first = new Node<>(null, null, null);
     transient Node<E> last = new Node<>(null, null, null);
+    int modCount = 0;
 
 
     @Override
@@ -46,6 +47,7 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
         if (size == 1) {
             first = last;
         }
+        modCount++;
     }
 
     @Override
@@ -63,8 +65,12 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
         return new Iterator<E>() {
             SimpleLinkedList.Node<E> forIterator;
+            int expectedModCount = modCount;
             @Override
             public boolean hasNext() {
+                if (modCount != expectedModCount) {
+                    throw new ConcurrentModificationException();
+                }
                 if (forIterator == null) {
                     return first.getItem() != null;
                 }
