@@ -33,31 +33,26 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
     }
 
     transient int size = 0;
-    transient Node<E> first;
-    transient Node<E> last;
-    public Node<E> forIterator;
+    transient Node<E> first = new Node<>(null, null, null);
+    transient Node<E> last = new Node<>(null, null, null);
+
 
     @Override
     public void add(E value) {
-        if (first == null) {
-            first = new Node<>(null, value, null);
-            last = first;
-        } else {
-            Node temp = new Node<>(last, value, null);
-            last.setNext(temp);
-            last = new Node<>(last, value, null);
-        }
+        Node temp = new Node<>(last, value, null);
+        last.setNext(temp);
+        last = new Node<>(last, value, null);
         size++;
+        if (size == 1) {
+            first = last;
+        }
     }
 
     @Override
     public E get(int index) {
         Objects.checkIndex(index, size);
         Node<E> temp = first;
-        if (index == 0) {
-            return first.getItem();
-        }
-        for (int i = 1; i <= index; i++) {
+        for (int i = 0; i < index; i++) {
             temp = temp.getNext();
         }
         return temp.getItem();
@@ -65,12 +60,15 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
 
     @Override
     public Iterator<E> iterator() {
+
         return new Iterator<E>() {
-            int iPointer = 0;
-            forIterator = null;
+            SimpleLinkedList.Node<E> forIterator;
             @Override
             public boolean hasNext() {
-                return forIterator == null && first != null || forIterator != null && forIterator.next != null;
+                if (forIterator == null) {
+                    return first.getItem() != null;
+                }
+                return forIterator.next != null;
             }
 
             @Override
@@ -84,10 +82,6 @@ public class SimpleLinkedList<E> implements LinkedList<E> {
                 } else {
                     forIterator = forIterator.next;
                 }
-                if (forIterator == null) {
-                    forIterator = first;
-                }
-                iPointer++;
                 return forIterator.getItem();
             }
         };
