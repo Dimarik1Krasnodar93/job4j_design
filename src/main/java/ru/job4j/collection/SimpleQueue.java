@@ -6,14 +6,17 @@ public class SimpleQueue<T> {
     int countOut = 0;
     int countIn = 0;
     public T poll() {
+        T rsl;
         if (countOut == 0) {
             for (int i = 0; i < countIn; i++) {
                 out.push(in.pop());
                 countOut++;
             }
+            countIn = 0;
         }
         countOut--;
-        return out.pop();
+        rsl = out.pop();
+        return rsl;
     }
 
     public void push(T value) {
