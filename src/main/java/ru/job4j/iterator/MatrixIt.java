@@ -19,6 +19,7 @@ public class MatrixIt implements Iterator<Integer> {
             for (int j = column; j < data[i].length; j++) {
                 row = i;
                 column = j;
+                i = data.length;
                 rsl = true;
                 return rsl;
             }
