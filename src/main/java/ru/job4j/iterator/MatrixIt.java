@@ -8,7 +8,7 @@ import java.util.Optional;
 public class MatrixIt implements Iterator<Integer> {
     private final int[][] data;
     private int row = 0;
-    private int column = -1;
+    private int column = 0;
 
     public MatrixIt(int[][] data) {
         this.data = data;
@@ -16,14 +16,20 @@ public class MatrixIt implements Iterator<Integer> {
 
     @Override
     public boolean hasNext() {
-        int tempColumn = column;
+        boolean rsl = false;
         for (int i = row; i < data.length; i++) {
-            for (int j = tempColumn + 1; j < data[i].length; j++) {
-                return true;
+            for (int j = column; j < data[i].length; j++) {
+                row = i;
+                column = j;
+                rsl = true;
+                break;
             }
-            tempColumn = -1;
+            if (rsl) {
+                break;
+            }
+            column = 0;
         }
-        return false;
+        return rsl;
     }
 
     @Override
@@ -31,24 +37,6 @@ public class MatrixIt implements Iterator<Integer> {
         if (!hasNext()) {
             throw new NoSuchElementException();
         }
-        boolean resultFound = false;
-        for (int i = row; i < data.length; i++) {
-            for (int j = column + 1; j < data[i].length; j++) {
-                row = i;
-                column = j;
-                resultFound = true;
-                break;
-            }
-            if (resultFound) {
-                break;
-            }
-            column = -1;
-        }
-        Optional optPointer = Optional.of(data[row][column]);
-        if (optPointer.isPresent()) {
-            return data[row][column];
-        } else {
-            return next();
-        }
+        return data[row][column++];
     }
 }
