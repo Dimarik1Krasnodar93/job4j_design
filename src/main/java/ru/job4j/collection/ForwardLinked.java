@@ -20,11 +20,7 @@ public class ForwardLinked<T> implements Iterable<T> {
     }
 
     public void addFirst(T value) {
-        if (head == null) {
-            add(value);
-        } else {
-            head = new Node<>(value, head);
-        }
+        head = new Node<>(value, head);
     }
 
     public T deleteFirst() {
@@ -44,22 +40,16 @@ public class ForwardLinked<T> implements Iterable<T> {
         if (head == null || head.next == null) {
             return false;
         }
-        SimpleQueue<T> queue = new SimpleQueue();
-        Iterator<T> iterator = iterator();
-        int i = 0;
-        while (iterator.hasNext()) {
-            queue.push(iterator.next());
-            i++;
-        }
-        if (head != null) {
-            while (head.next != null) {
-                head = head.next;
-            }
-            head = null;
-        }
-        for (int j = 0; j < i; j++) {
-            addFirst(queue.poll());
-        }
+        Node<T> temp = head;
+        Node<T> previous = null;
+        Node<T> next;
+       while (temp != null) {
+           next = temp.next;
+           temp.next = previous;
+           previous = temp;
+           temp = next;
+       }
+       head = previous;
         return true;
     }
 
