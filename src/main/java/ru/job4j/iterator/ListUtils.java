@@ -44,7 +44,7 @@ public class ListUtils {
         while (iterator.hasNext()) {
             T rsl = iterator.next();
             if (filter.test(rsl)) {
-                iterator.set(rsl);
+                iterator.set(value);
             }
         }
     }
