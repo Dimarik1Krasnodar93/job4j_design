@@ -22,10 +22,7 @@ public class MatrixIt implements Iterator<Integer> {
                 row = i;
                 column = j;
                 rsl = true;
-                break;
-            }
-            if (rsl) {
-                break;
+                return rsl;
             }
             column = 0;
         }
