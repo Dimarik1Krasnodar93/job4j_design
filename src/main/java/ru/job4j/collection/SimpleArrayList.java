@@ -1,5 +1,6 @@
 package ru.job4j.collection;
 
+import java.sql.Array;
 import java.util.*;
 
 public class SimpleArrayList<T> implements SimpleList<T> {
@@ -12,6 +13,21 @@ public class SimpleArrayList<T> implements SimpleList<T> {
 
     public SimpleArrayList(int capacity) {
         this.container = (T[]) new Object[capacity];
+    }
+
+    public boolean contains(T value) {
+        boolean rsl = false;
+        if (value == null) {
+            for (var temp : container) {
+                if (temp == null) {
+                    rsl = true;
+                    break;
+                }
+            }
+        } else {
+            return Arrays.stream(container).anyMatch(value::equals);
+        }
+        return rsl;
     }
 
     @Override
