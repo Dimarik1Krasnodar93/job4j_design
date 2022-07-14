@@ -18,7 +18,6 @@ public class SimpleSetTest {
     public void whenAddNull() {
         Set<Integer> set = new SimpleSet<>();
         assertTrue(set.add(null));
-
         assertTrue(set.contains(null));
         assertFalse(set.add(null));
     }
