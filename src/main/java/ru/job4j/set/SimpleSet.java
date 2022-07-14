@@ -24,6 +24,7 @@ public class SimpleSet<T> implements Set<T> {
         for (T temp : set) {
             if (temp == value || temp.equals(value)) {
                 rsl = true;
+
                 break;
             }
         }
