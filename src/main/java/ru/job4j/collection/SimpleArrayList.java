@@ -15,21 +15,6 @@ public class SimpleArrayList<T> implements SimpleList<T> {
         this.container = (T[]) new Object[capacity];
     }
 
-    public boolean contains(T value) {
-        boolean rsl = false;
-        if (value == null) {
-            for (var temp : container) {
-                if (temp == null) {
-                    rsl = true;
-                    break;
-                }
-            }
-        } else {
-            return Arrays.stream(container).anyMatch(value::equals);
-        }
-        return rsl;
-    }
-
     @Override
     public void add(T value) {
         increaseArray();
