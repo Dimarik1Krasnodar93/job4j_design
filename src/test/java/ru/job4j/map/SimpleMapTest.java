@@ -95,10 +95,10 @@ class SimpleMapTest {
         map.put(null, "0000");
         assertThat(map.put(15, "15")).isTrue();
         assertThat(map).hasSize(6);
-        assertThat(map.put(8, "8")).isFalse();//по условию задачи мы коллизии не рассматриваем
+        assertThat(map.put(8, "8")).isTrue();
         assertThat(map.put(16, "16")).isFalse();
         assertThat(map.get(4)).isEqualTo("4");
-        assertThat(map.get(8)).isEqualTo("8");//по условию задачи мы коллизии не рассматриваем и тут должно быть 000, а не 8
+        assertThat(map.get(8)).isEqualTo("8");
         assertThat(map.get(15)).isEqualTo("15");
         for (Integer integer : map) {
             listKey.add(integer);

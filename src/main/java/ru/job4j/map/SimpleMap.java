@@ -1,6 +1,5 @@
 package ru.job4j.map;
 
-import java.sql.Array;
 import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
@@ -20,13 +19,11 @@ public class SimpleMap<K, V> implements Map<K, V> {
     @Override
     public boolean put(K key, V value) {
         modCount++;
-        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
-        if (table[index] == null) {
-            count++;
-            if (count > table.length * LOAD_FACTOR) {
-                expand();
-            }
+        count++;
+        if (count > table.length * LOAD_FACTOR) {
+            expand();
         }
+        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
         boolean rsl = table[index] == null;
         if (rsl) {
             table[index] = new MapEntry<>(key, value);
@@ -35,7 +32,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
     }
 
     private int hash(int hashCode) {
-        return hashCode ^ (hashCode >>> capacity);
+        return hashCode ^ (hashCode >>> 8);
     }
 
     private int indexFor(int hash) {
@@ -46,7 +43,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
         MapEntry<K, V>[] temp = table;
         capacity *= 2;
         table = new MapEntry[capacity];
-        for (var mapEntry : temp ) {
+        for (var mapEntry : temp) {
             if (mapEntry != null) {
                 int index = mapEntry.getKey() == null ? 0 : indexFor(hash(mapEntry.getKey().hashCode()));
                 table[index] = mapEntry;
@@ -84,7 +81,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
                     throw new ConcurrentModificationException();
                 }
                 boolean rsl = index  < table.length;
-                if (rsl == false) {
+                if (!rsl) {
                     return false;
                 } else if (table[index] == null) {
                     index++;
@@ -96,7 +93,7 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
             @Override
             public K next() {
-                if (! hasNext()) {
+                if (!hasNext()) {
                     throw new NoSuchElementException();
                 }
                 return table[index++].getKey();
