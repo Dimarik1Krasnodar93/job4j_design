@@ -1,7 +1,9 @@
 package ru.job4j.map;
 
 import java.sql.Array;
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class SimpleMap<K, V> implements Map<K, V> {
 
@@ -17,21 +19,23 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public boolean put(K key, V value) {
-        boolean rsl = true;
-        if (count >= table.length * LOAD_FACTOR) {
-            expand();
-            rsl = false;
+        modCount++;
+        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
+        if (table[index] == null) {
+            count++;
+            if (count > table.length * LOAD_FACTOR) {
+                expand();
+            }
         }
-        int index = indexFor(hash(key.hashCode()));
-        table[index] = new MapEntry<>(key, value);
-        count++;
+        boolean rsl = table[index] == null;
+        if (rsl) {
+            table[index] = new MapEntry<>(key, value);
+        }
         return rsl;
     }
 
     private int hash(int hashCode) {
-        return hashCode ^ (hashCode >>> capacity); // побитовый сдвиг вправо. Но что значит >>> не понял
-        //да и зачем все это. для целей хэшмэпа достаточно просто взять как в уроке написано Метод деления и получить баскет.
-        ///зачем все эти сложности, не понимаю
+        return hashCode ^ (hashCode >>> capacity);
     }
 
     private int indexFor(int hash) {
@@ -41,10 +45,10 @@ public class SimpleMap<K, V> implements Map<K, V> {
     private void expand() {
         MapEntry<K, V>[] temp = table;
         capacity *= 2;
-        MapEntry<K, V>[] table = new MapEntry[capacity];
-        for (var mapEntry : table ) {
+        table = new MapEntry[capacity];
+        for (var mapEntry : temp ) {
             if (mapEntry != null) {
-                int index = indexFor(hash(mapEntry.getKey().hashCode()));
+                int index = mapEntry.getKey() == null ? 0 : indexFor(hash(mapEntry.getKey().hashCode()));
                 table[index] = mapEntry;
             }
         }
@@ -52,14 +56,15 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        int index = indexFor(hash(key.hashCode()));
+        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
         return table[index] == null ? null : table[index].getValue();
     }
 
     @Override
     public boolean remove(K key) {
-        int index = indexFor(hash(key.hashCode()));
+        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
         boolean rsl = false;
+        modCount++;
         if (table[index] != null) {
             table[index] = null;
             rsl = true;
@@ -70,7 +75,33 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public Iterator<K> iterator() {
-        return null;
+        return new Iterator<K>() {
+            int index = 0;
+            int modIterator = modCount;
+            @Override
+            public boolean hasNext() {
+                if (modIterator != modCount) {
+                    throw new ConcurrentModificationException();
+                }
+                boolean rsl = index  < table.length;
+                if (rsl == false) {
+                    return false;
+                } else if (table[index] == null) {
+                    index++;
+                    return hasNext();
+                } else {
+                    return true;
+                }
+            }
+
+            @Override
+            public K next() {
+                if (! hasNext()) {
+                    throw new NoSuchElementException();
+                }
+                return table[index++].getKey();
+            }
+        };
     }
 
     private static class MapEntry<K, V> {
