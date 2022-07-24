@@ -31,16 +31,16 @@ public class SimpleMap<K, V> implements Map<K, V> {
         return rsl;
     }
 
-    private int getIndex(K key) {
-        return key == null ? 0 : indexFor(hash(key.hashCode()));
-    }
-
     private int hash(int hashCode) {
         return hashCode ^ (hashCode >>> 16);
     }
 
     private int indexFor(int hash) {
         return hash & (capacity - 1);
+    }
+
+    private int getIndex(K key) {
+        return key == null ? 0 : indexFor(hash(key.hashCode()));
     }
 
     private void expand() {
@@ -58,13 +58,13 @@ public class SimpleMap<K, V> implements Map<K, V> {
 
     @Override
     public V get(K key) {
-        int index = getIndex(key);;
+        int index = getIndex(key);
         return table[index] == null ? null : table[index].getValue();
     }
 
     @Override
     public boolean remove(K key) {
-        int index = key == null ? 0 : indexFor(hash(key.hashCode()));
+        int index = getIndex(key);
         boolean rsl = false;
         modCount++;
         if (table[index] != null) {
@@ -85,15 +85,14 @@ public class SimpleMap<K, V> implements Map<K, V> {
                 if (modIterator != modCount) {
                     throw new ConcurrentModificationException();
                 }
-                boolean rsl = index  < table.length;
-                if (!rsl) {
-                    return false;
+                boolean rsl = true;
+                if (index  >= table.length) {
+                    rsl = false;
                 } else if (table[index] == null) {
                     index++;
-                    return hasNext();
-                } else {
-                    return true;
+                    rsl = hasNext();
                 }
+                return rsl;
             }
 
             @Override
