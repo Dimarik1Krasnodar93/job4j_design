@@ -1,4 +1,4 @@
-package ru.job4j.MyCode;
+package ru.job4j.mycode;
 
 public class MyStudent implements Comparable {
     private String name;
@@ -10,7 +10,7 @@ public class MyStudent implements Comparable {
 
     @Override
     public int compareTo(Object st2) {
-        return Integer.compare(age, ((MyStudent)st2).age);
+        return Integer.compare(age, ((MyStudent) st2).age);
     }
 
     @Override
