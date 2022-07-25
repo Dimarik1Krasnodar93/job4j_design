@@ -22,10 +22,21 @@ public class SimpleTreeTest {
         assertThat(tree.findBy(6)).isPresent();
     }
 
-    @org.junit.Test(expected = NoSuchElementException.class)
-    void when6ElFindLastThen6Null() {
-        Tree<Integer> tree = new SimpleTree<>(2);
+    @Test
+    void testIsBinary() {
+        Tree<Integer> tree = new SimpleTree<>(1);
         tree.add(1, 2);
+        tree.add(1, 3);
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
+    void testNoBinary() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(1, 4);
+        assertThat(tree.isBinary()).isFalse();
     }
 
     @Test
