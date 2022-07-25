@@ -11,9 +11,6 @@ public class App {
         map.put(1, "2");
         System.out.println(map.get(1));
         LinkedList<String> list = new LinkedList<>();
-
-        // Adding elements in the list
-        // using add() method
         list.add("Geeks1");
         list.add("for2");
         list.add("Geeks3");

@@ -49,7 +49,6 @@ public class SimpleTreeTest {
         });
     }
 
-
     @Test
     void whenElFindNotExistThenOptionEmpty() {
         Tree<Integer> tree = new SimpleTree<>(1);
