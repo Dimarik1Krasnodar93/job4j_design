@@ -33,6 +33,15 @@ public class SimpleTreeTest {
     }
 
     @Test
+    void testNoBinary2() {
+        Tree<Integer> tree = new SimpleTree<>(1);
+        tree.add(1, 2);
+        tree.add(1, 3);
+        tree.add(2, 3);
+        assertThat(tree.isBinary()).isTrue();
+    }
+
+    @Test
     void testNoBinary() {
         Tree<Integer> tree = new SimpleTree<>(1);
         tree.add(1, 2);
