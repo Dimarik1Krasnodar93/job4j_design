@@ -26,4 +26,8 @@ public class User {
         return user.id == id && user.name.equals(name);
     }
 
+    @Override
+    public int hashCode() {
+        return id * 1000000 +  name.length() * 1000 +  name.length() != 0 ? name.toCharArray()[0] : 1;
+    }
 }

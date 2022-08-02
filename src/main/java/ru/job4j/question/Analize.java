@@ -13,10 +13,10 @@ public class Analize {
         int changeCount = 0;
         int addCount = 0;
         Map<Integer, User>  hashMap = new HashMap<>(previous.size() + current.size());
-        for(User temp : previous) {
+        for (User temp : previous) {
             hashMap.put(temp.getId(), temp);
         }
-        for(User temp : current) {
+        for (User temp : current) {
             User user = hashMap.get(temp.getId());
             if (user == null) {
                 addCount++;

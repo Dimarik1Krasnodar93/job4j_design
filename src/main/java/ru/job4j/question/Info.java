@@ -16,8 +16,13 @@ public class Info {
 
     @Override
     public boolean equals(Object obj) {
-        return ((Info)obj).added == added
-                && ((Info)obj).changed == changed
-                && ((Info)obj).deleted == deleted;
+        return ((Info) obj).added == added
+                && ((Info) obj).changed == changed
+                && ((Info) obj).deleted == deleted;
+    }
+
+    @Override
+    public int hashCode() {
+        return added * 1000000 + changed * 1000 + deleted;
     }
 }
