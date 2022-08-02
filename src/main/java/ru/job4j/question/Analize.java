@@ -14,17 +14,17 @@ public class Analize {
         int addCount = 0;
         Map<Integer, User>  hashMap = new HashMap<>(previous.size() + current.size());
         for(User temp : previous) {
-            hashMap.put(temp.hashCode(), temp);
+            hashMap.put(temp.getId(), temp);
         }
         for(User temp : current) {
-            User user = hashMap.get(temp.hashCode());
+            User user = hashMap.get(temp.getId());
             if (user == null) {
                 addCount++;
             } else {
                 if (!user.equals(temp)) {
                     changeCount++;
                 }
-                hashMap.remove(temp.hashCode());
+                hashMap.remove(temp.getId());
             }
         }
         deleteCount = hashMap.size();
