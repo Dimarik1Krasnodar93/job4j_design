@@ -1,0 +1,30 @@
+package ru.job4j.mycode;
+
+import org.junit.Test;
+
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.*;
+
+
+
+public class  FreezeStrTest {
+    @Test
+    public void whenEq() {
+        assertThat(FreezeStr.eq("Hello", "Hlloe"), is(true));
+    }
+
+    @Test
+    public void whenNotEq() {
+        assertThat(FreezeStr.eq("Hello", "Halle"), is(false));
+    }
+
+    @Test
+    public void whenNotMultiEq() {
+        assertThat(FreezeStr.eq("heloo", "hello"), is(false));
+    }
+
+    @Test
+    public void whenNotMultiEqMore() {
+        assertThat(FreezeStr.eq("Hello4", "Hlloe"), is(false));
+    }
+}

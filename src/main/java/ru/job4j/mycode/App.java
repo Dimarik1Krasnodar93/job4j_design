@@ -1,16 +1,30 @@
 package ru.job4j.mycode;
+import java.lang.reflect.ParameterizedType;
 import java.util.*;
 
 public class App {
     public static void main(String[] args) {
-        PriorityQueue<MyStudent> prQueue = new PriorityQueue<>();
-        prQueue.add(new MyStudent("4", 4));
-        prQueue.add(new MyStudent("2", 2));
-        prQueue.add(new MyStudent("1", 1));
-        prQueue.add(new MyStudent("8", 8));
-        System.out.println(prQueue.remove());
-        System.out.println(prQueue.remove());
-        System.out.println(prQueue.remove());
-        System.out.println(prQueue.remove());
+        List<String> ll = new LinkedList<>();
+        ll.add("1");
+        println(ll);
+
+        class FloatList extends ArrayList<Float> {
+
+        }
+        ArrayList<Float> listOfNumbers = new FloatList();
+        Class actual = listOfNumbers.getClass();
+        ParameterizedType type = (ParameterizedType) actual.getGenericSuperclass();
+        System.out.println(type);
+        Set<String> setStr = new HashSet<String>();
+        Set<String> setStr2 = new HashSet<>();
     }
+
+    public static void println(Collection<?> col) {
+
+        Class actual = col.getClass();
+        ParameterizedType type = (ParameterizedType) actual.getGenericSuperclass();
+        System.out.println(type);
+    }
+
+
 }
