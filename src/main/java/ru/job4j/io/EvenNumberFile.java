@@ -12,7 +12,7 @@ public class EvenNumberFile {
             }
             String[] lines = text.toString().split(System.lineSeparator());
             for (String temp : lines) {
-                System.out.println(temp + " " +  (new Integer(temp) % 2 == 0 ? "четное" : "нечетное"));
+                System.out.println(temp + " " +  (Integer.parseInt(temp) % 2 == 0 ? "четное" : "нечетное"));
             }
         } catch (IOException e) {
             e.printStackTrace();
