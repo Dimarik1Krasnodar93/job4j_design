@@ -19,13 +19,13 @@ public class Config {
     public void load() {
         try (BufferedReader in = new BufferedReader(new FileReader(path))) {
             values = in.lines()
-                    .filter(x -> !x.startsWith("#")).peek(x -> System.out.println(x))
+                    .filter(x -> !x.startsWith("#") && x.length() > 0)
             .collect(Collectors
                     .toMap(k -> {
                             if (k.lastIndexOf("=") == -1) {
                                 throw new IllegalArgumentException();
                             }
-                        return k.substring(0, k.indexOf("=")).substring(k.lastIndexOf(".") + 1); },
+                        return k.substring(0, k.indexOf("=")); },
                             v -> {
                         if (v.lastIndexOf("=") == -1) {
                             throw new IllegalArgumentException();
