@@ -9,7 +9,7 @@ public class Dir {
             throw new IllegalArgumentException(String.format("Not exist %s", file.getAbsoluteFile()));
         }
         if (!file.isDirectory()) {
-            System.out.println(file.getName() + ": size: " + file.length());
+            System.out.println(String.format(file.getName() + ": size: %s", file.length()));
         } else {
             for (File subfile : file.listFiles()) {
                 System.out.println(subfile.getAbsoluteFile());
