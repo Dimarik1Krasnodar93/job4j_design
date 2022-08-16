@@ -10,6 +10,10 @@ public class Dir {
         }
         if (!file.isDirectory()) {
             System.out.println(file.getName() + ": size: " + file.length());
+        } else {
+            for (File subfile : file.listFiles()) {
+                System.out.println(subfile.getAbsoluteFile());
+            }
         }
     }
 }
