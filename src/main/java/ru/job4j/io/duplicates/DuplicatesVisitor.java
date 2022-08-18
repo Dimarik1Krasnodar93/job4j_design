@@ -4,35 +4,32 @@ import ru.job4j.set.Set;
 
 import java.io.IOException;
 import java.nio.file.FileVisitResult;
+import java.nio.file.FileVisitor;
 import java.nio.file.Path;
 import java.nio.file.SimpleFileVisitor;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DuplicatesVisitor extends SimpleFileVisitor<Path> {
 
 
-    public Map<FileProperty, List<String>> hasMap = new HashMap<>();
+    public Map<FileProperty, List<String>> hashMap = new HashMap<>();
 
     public DuplicatesVisitor() {
 
     }
 
     public Map<FileProperty, List<String>> getHasMap() {
-        return hasMap;
+        return hashMap;
     }
 
     @Override
     public FileVisitResult visitFile(Path file, BasicFileAttributes attrs) throws IOException {
-        List<String> tempList = new ArrayList<>();
-        tempList.add(file.toFile().getAbsolutePath());
-        hasMap.merge(new FileProperty(file.toFile().length(),
-                file.toFile().getName()), tempList, (oldV, newV) -> {
-            oldV.add(file.toFile().getAbsolutePath());
-            return oldV;
+        FileProperty keyH = new FileProperty(file.toFile().length(), file.toFile().getName());
+        hashMap.putIfAbsent(keyH, new ArrayList<>());
+        hashMap.computeIfPresent(keyH, (key, val) -> {
+            val.add(file.toFile().getAbsolutePath());
+            return val;
         });
         return super.visitFile(file, attrs);
     }
