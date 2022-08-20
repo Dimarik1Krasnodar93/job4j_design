@@ -12,36 +12,41 @@ public class ArgsName {
         String rsl = values.get(key);
         if (rsl == null) {
             throw new IllegalArgumentException("Argument not found");
-        } else {
-            return rsl;
         }
+        return rsl;
     }
 
     private void parse(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Отсутствуют аргументы");
+        }
+
         String[] splitStr;
         for (String str : args) {
+            validate(args, false);
             splitStr = str.split("=", 2);
             values.put(splitStr[0].substring(1), splitStr[1]);
         }
     }
 
     public static ArgsName of(String[] args) {
-        validate(args, false);
+
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
     }
 
     public static void main(String[] args) {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Отсутствуют аргументы");
+        }
         validate(args, true);
         ArgsName jvm = ArgsName.of(args);
         System.out.println(jvm.get("path"));
     }
 
     public static void validate(String[] args, boolean mainCheck) throws IllegalArgumentException {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Отсутствуют аргументы");
-        }
+
         String[] splitStr;
         splitStr = args[0].split("=", 2);
         if (mainCheck) {
