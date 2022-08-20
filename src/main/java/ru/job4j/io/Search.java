@@ -1,5 +1,6 @@
 package ru.job4j.io;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -23,6 +24,17 @@ public class Search {
         }
         return searcher.getPaths();
     }
+
+    public static List<File> searchFiles(Path root, Predicate<Path> condition) {
+        SearchFiles searcher = new SearchFiles(condition);
+        try {
+            Files.walkFileTree(root, searcher);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return searcher.getFiles();
+    }
+
     public static void validate(String[] args) throws IllegalArgumentException {
         if (args.length == 0) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");

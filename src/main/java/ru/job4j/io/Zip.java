@@ -8,10 +8,18 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 public class Zip {
-    public void packFiles(List<Path> sources, File target) {
-        for (Path path : sources) {
-            File file = path.toFile();
-            packSingleFile(file, target);
+    public void packFiles(List<File> sources, File target) {
+
+        try (ZipOutputStream zip = new ZipOutputStream(new BufferedOutputStream(new FileOutputStream(target)))) {
+            for (File source : sources) {
+                try (BufferedInputStream out = new BufferedInputStream(new FileInputStream(source))) {
+                    zip.putNextEntry(new ZipEntry(source.getPath()));
+                    zip.write(out.readAllBytes());
+                    zip.closeEntry();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -29,9 +37,9 @@ public class Zip {
 
     public static void main(String[] args) {
         ArgsName jvm = validateCreateArgsName(args);
-        List<Path> lp = Search.search(Paths.get("."), x -> !x.endsWith(".class"));
+        List<File> lf = Search.searchFiles(Paths.get("."), x -> !x.endsWith(".class"));
         Zip zip = new Zip();
-        zip.packFiles(lp, new File(jvm.get("o")));
+        zip.packFiles(lf, new File(jvm.get("o")));
     }
 
     public static ArgsName validateCreateArgsName(String[] args) {
@@ -39,13 +47,19 @@ public class Zip {
             throw new IllegalArgumentException("Не введены все аргументы. Минимум 3 аргумента");
         }
         ArgsName jvm = ArgsName.of(args);
-        String strPath = jvm.get("e");
-        if (strPath == null) {
-            throw new IllegalArgumentException("В аргументах отсутствует путь");
+        String temp = jvm.get("e");
+        if (temp == null) {
+            throw new IllegalArgumentException("Argument has not file extension");
         }
-        strPath = jvm.get("o");
-        if (strPath == null) {
-            throw new IllegalArgumentException("Отсутствует аргумент назначения");
+        if (!temp.startsWith(".")) {
+            throw new IllegalArgumentException("Argument has not file extension - has not point");
+        }
+        temp = jvm.get("o");
+        if (temp == null) {
+            throw new IllegalArgumentException("Target argument has not found");
+        }
+        if (!temp.endsWith("zip")) {
+            throw new IllegalArgumentException("Target should ends with .zip");
         }
         return jvm;
     }
