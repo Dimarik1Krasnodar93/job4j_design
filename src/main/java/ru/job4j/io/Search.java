@@ -9,7 +9,8 @@ import java.util.function.Predicate;
 
 public class Search {
     public static void main(String[] args) throws IOException {
-        Path start = Paths.get(".");
+        validate(args);
+        Path start = Paths.get(args[0]);
         search(start, p -> p.toFile().getName().endsWith(".js")).forEach(System.out::println);
     }
 
@@ -21,5 +22,10 @@ public class Search {
             e.printStackTrace();
         }
         return searcher.getPaths();
+    }
+    public static void validate(String[] args) throws IllegalArgumentException {
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
+        }
     }
 }
