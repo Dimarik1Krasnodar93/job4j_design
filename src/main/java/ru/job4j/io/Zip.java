@@ -35,14 +35,14 @@ public class Zip {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         ArgsName jvm = validateCreateArgsName(args);
         List<File> lf = Search.searchFiles(Paths.get("."), x -> !x.endsWith(".class"));
         Zip zip = new Zip();
         zip.packFiles(lf, new File(jvm.get("o")));
     }
 
-    public static ArgsName validateCreateArgsName(String[] args) {
+    public static ArgsName validateCreateArgsName(String[] args) throws IOException {
         if (args.length < 3) {
             throw new IllegalArgumentException("Не введены все аргументы. Минимум 3 аргумента");
         }
@@ -53,6 +53,14 @@ public class Zip {
         }
         if (!temp.startsWith(".")) {
             throw new IllegalArgumentException("Argument has not file extension - has not point");
+        }
+        temp = jvm.get("d");
+        if (temp == null) {
+            throw new IllegalArgumentException("Target argument has not found");
+        }
+        File file = new File(temp);
+        if (!file.exists() || !file.isDirectory()) {
+            throw new IOException("Target argument has not found or target is not directory");
         }
         temp = jvm.get("o");
         if (temp == null) {
