@@ -13,7 +13,7 @@ public class Search {
     public static void main(String[] args) throws IOException {
         validate(args);
         Path start = Paths.get(args[0]);
-        search(start, p -> p.toFile().getName().endsWith(".js")).forEach(System.out::println);
+        search(start, p -> p.toFile().getName().endsWith(args[1])).forEach(System.out::println);
     }
 
     public static List<Path> search(Path root, Predicate<Path> condition) {
@@ -42,7 +42,18 @@ public class Search {
         }
         File file = new File(args[0]);
         if (!file.exists()) {
-            throw new IllegalArgumentException(String.format("At the path %s there is not directory", args[0]));
+            try {
+                throw new NotDirectoryException(String.format("At the path %s there is not directory", args[0]));
+            } catch (NotDirectoryException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        if (!file.isDirectory()) {
+            try {
+                throw new IOException("File is not directory");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException(String.format("Second argument must start by  '.' but was %s", args[1]));

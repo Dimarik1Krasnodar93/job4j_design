@@ -1,6 +1,7 @@
 package ru.job4j.io;
 
 import java.io.*;
+import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -60,7 +61,7 @@ public class Zip {
         }
         File file = new File(temp);
         if (!file.exists() || !file.isDirectory()) {
-            throw new IOException("Target argument has not found or target is not directory");
+            throw new NotDirectoryException("Target argument has not found or target is not directory");
         }
         temp = jvm.get("o");
         if (temp == null) {
