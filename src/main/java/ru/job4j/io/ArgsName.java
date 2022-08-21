@@ -9,17 +9,14 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) throws  IllegalArgumentException {
-        String rsl = values.get(key);
-        if (rsl == null) {
+        if (values.containsKey(key)) {
             throw new IllegalArgumentException("Argument not found");
         }
+        String rsl = values.get(key);
         return rsl;
     }
 
     private void parse(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Отсутствуют аргументы");
-        }
         String[] splitStr;
         for (String str : args) {
             validate(str);
@@ -43,13 +40,19 @@ public class ArgsName {
     }
 
     private static void validate(String str) {
+        if (!str.startsWith("-")) {
+            throw new IllegalArgumentException("First symbol should be '-'");
+        }
+        if (str.startsWith("-=")) {
+            throw new IllegalArgumentException("String symbol should  not start by \"-=\"");
+        }
         String[] splitStr;
         splitStr = str.split("=", 2);
         if (splitStr.length < 2) {
             throw new IllegalArgumentException("Illegal count arguments count after split");
         }
-        if (!str.startsWith("-")) {
-            throw new IllegalArgumentException("First symbol should be '-'");
+        if (splitStr[0].length() == 0 || splitStr[1].length() == 0) {
+            throw new IllegalArgumentException("Length of one of arguments is 0");
         }
     }
 }
