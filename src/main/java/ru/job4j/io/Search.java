@@ -3,6 +3,7 @@ package ru.job4j.io;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -35,9 +36,17 @@ public class Search {
         return searcher.getFiles();
     }
 
-    public static void validate(String[] args) throws IllegalArgumentException {
-        if (args.length == 0) {
+    public static void validate(String[] args) {
+        if (args.length < 2) {
             throw new IllegalArgumentException("Root folder is null. Usage java -jar dir.jar ROOT_FOLDER.");
         }
+        File file = new File(args[0]);
+        if (!file.exists()) {
+            throw new IllegalArgumentException(String.format("At the path %s there is not directory", args[0]));
+        }
+        if (!args[1].startsWith(".")) {
+            throw new IllegalArgumentException(String.format("Second argument must start by  '.' but was %s", args[1]));
+        }
+
     }
 }
