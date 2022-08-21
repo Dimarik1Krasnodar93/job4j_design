@@ -49,9 +49,6 @@ public class Zip {
         }
         ArgsName jvm = ArgsName.of(args);
         String temp = jvm.get("e");
-        if (temp == null) {
-            throw new IllegalArgumentException("Argument has not file extension");
-        }
         if (!temp.startsWith(".")) {
             throw new IllegalArgumentException("Argument has not file extension - has not point");
         }
