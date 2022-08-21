@@ -9,7 +9,7 @@ public class ArgsName {
     private final Map<String, String> values = new HashMap<>();
 
     public String get(String key) throws  IllegalArgumentException {
-        if (values.containsKey(key)) {
+        if (!values.containsKey(key)) {
             throw new IllegalArgumentException("Argument not found");
         }
         String rsl = values.get(key);
