@@ -47,6 +47,5 @@ public class Search {
         if (!args[1].startsWith(".")) {
             throw new IllegalArgumentException(String.format("Second argument must start by  '.' but was %s", args[1]));
         }
-
     }
 }

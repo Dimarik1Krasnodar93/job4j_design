@@ -20,47 +20,36 @@ public class ArgsName {
         if (args.length == 0) {
             throw new IllegalArgumentException("Отсутствуют аргументы");
         }
-
         String[] splitStr;
         for (String str : args) {
-            validate(args, false);
+            validate(str);
             splitStr = str.split("=", 2);
             values.put(splitStr[0].substring(1), splitStr[1]);
         }
     }
 
     public static ArgsName of(String[] args) {
-
+        if (args.length == 0) {
+            throw new IllegalArgumentException("Отсутствуют аргументы");
+        }
         ArgsName names = new ArgsName();
         names.parse(args);
         return names;
     }
 
     public static void main(String[] args) {
-        if (args.length == 0) {
-            throw new IllegalArgumentException("Отсутствуют аргументы");
-        }
-        validate(args, true);
         ArgsName jvm = ArgsName.of(args);
         System.out.println(jvm.get("path"));
     }
 
-    public static void validate(String[] args, boolean mainCheck) throws IllegalArgumentException {
-
+    private static void validate(String str) {
         String[] splitStr;
-        splitStr = args[0].split("=", 2);
-        if (mainCheck) {
-            if (args.length < 2) {
-                throw new IllegalArgumentException("Отсутствуют 2 обязательных аргумента");
-            }
-            File file = new File(splitStr[1]);
-            if (!file.exists()) {
-                throw new NoSuchFieldError(String.format("По указанному пути %s директория не обнаружена", splitStr[1]));
-            }
-            splitStr = args[1].split("=", 2);
-            if (!splitStr[1].startsWith(".")) {
-                throw new IllegalArgumentException(String.format("Второй параметр должен начинаться с ., значение %s", splitStr[1]));
-            }
+        splitStr = str.split("=", 2);
+        if (splitStr.length < 2) {
+            throw new IllegalArgumentException("Illegal count arguments count after split");
+        }
+        if (!str.startsWith("-")) {
+            throw new IllegalArgumentException("First symbol should be '-'");
         }
     }
 }
