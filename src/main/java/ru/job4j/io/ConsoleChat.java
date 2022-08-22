@@ -51,9 +51,9 @@ public class ConsoleChat {
         Scanner sc = new Scanner(System.in);
         String strIn = sc.next();
         String rsl = CONTINUE;
-        if ("закончить".equals(strIn)) {
+        if (OUT.equals(strIn)) {
             rsl = OUT;
-        } else if ("стоп".equals(strIn)) {
+        } else if (STOP.equals(strIn)) {
             rsl = STOP;
         }
         return rsl;
