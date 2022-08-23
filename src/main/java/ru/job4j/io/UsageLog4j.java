@@ -26,5 +26,7 @@ public class UsageLog4j {
         LOG.debug("User was born at day : {}", (int) dayBorn);
         short monthBorn = 1;
         LOG.debug("User was born at month : {}", monthBorn);
+        byte dayOfWeekBorn = 1;
+        LOG.debug("User was born at day of week : {}", dayOfWeekBorn);
     }
 }
