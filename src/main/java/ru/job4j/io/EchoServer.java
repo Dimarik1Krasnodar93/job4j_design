@@ -15,8 +15,13 @@ public class EchoServer {
                     out.write("HTTP/1.1 200 OK\r\n\r\n".getBytes());
                     for (String str = in.readLine(); str != null && !str.isEmpty(); str = in.readLine()) {
                         System.out.println(str);
-                        if (str.startsWith("GET /?msg=Bye")) {
+                        if (str.startsWith("GET /?msg=Bye") || str.startsWith("GET /?msg=Exit")) {
+                            out.write("Bye.".getBytes());
                             server.close();
+                        } else if (str.startsWith("GET /?msg=Any")) {
+                            out.write("What.".getBytes());
+                        } else if (str.startsWith("GET /?msg=Hello")) {
+                            out.write("Hello my dear friend.".getBytes());
                         }
                     }
                     out.flush();
