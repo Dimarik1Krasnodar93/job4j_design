@@ -33,8 +33,8 @@ public class CSVReader {
                     }
                 }
                 for (int i = 0; i < indexArray.length; i++) {
-                    System.out.print(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter ));
-                    fw.write(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter ));
+                    System.out.print(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter));
+                    fw.write(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter));
                 }
                 System.out.println("");
                 fw.write("\n");

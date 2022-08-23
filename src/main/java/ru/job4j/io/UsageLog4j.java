@@ -4,6 +4,8 @@ import org.apache.log4j.LogManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.nio.charset.Charset;
+
 public class UsageLog4j {
 
     private static final Logger LOG = LoggerFactory.getLogger(UsageLog4j.class.getName());
@@ -18,13 +20,11 @@ public class UsageLog4j {
         LOG.debug("User info weight : {}", weight);
         boolean isMale = true;
         LOG.debug("User is male : {}", isMale);
-        String city = "Moscow";
-        LOG.debug("User's city : {}", city);
-        String country = "Russia";
-        LOG.debug("User's city : {}", country);
-        String education = "engineer";
-        LOG.debug("User's education : {}", education);
-        String educationCountry = "Russia";
-        LOG.debug("User's education country : {}", educationCountry);
+        long yearBorn = 1971;
+        LOG.debug("User was born at : {}", yearBorn);
+        char dayBorn = 1;
+        LOG.debug("User was born at day : {}", (int) dayBorn);
+        short monthBorn = 1;
+        LOG.debug("User was born at month : {}", monthBorn);
     }
 }
