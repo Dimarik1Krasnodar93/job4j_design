@@ -15,7 +15,8 @@ public class CSVReader {
         String[] columns;
         int[] indexArray = new int[filter.length];
         try (FileReader fr = new FileReader(path);
-        PrintWriter pw = new PrintWriter(out)) {
+        PrintStream ps = new PrintStream("stdout".equals(out) ? System.out : new FileOutputStream(out))
+        ) {
             Scanner sc = new Scanner(fr);
             boolean firstLine = true;
             while (sc.hasNextLine()) {
@@ -34,10 +35,10 @@ public class CSVReader {
                 }
                 for (int i = 0; i < indexArray.length; i++) {
                     System.out.print(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter));
-                    pw.write(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter));
+                    ps.print(columns[indexArray[i]] + (i == indexArray.length - 1 ? "" : deliminter));
                 }
                 System.out.println();
-                pw.println();
+                ps.println();
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
