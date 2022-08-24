@@ -15,9 +15,9 @@ public class CSVReader {
         String[] columns;
         int[] indexArray = new int[filter.length];
         try (FileReader fr = new FileReader(path);
+             Scanner sc = new Scanner(fr);
         PrintStream ps = new PrintStream("stdout".equals(out) ? System.out : new FileOutputStream(out))
         ) {
-            Scanner sc = new Scanner(fr);
             boolean firstLine = true;
             while (sc.hasNextLine()) {
                 temp = sc.nextLine();
