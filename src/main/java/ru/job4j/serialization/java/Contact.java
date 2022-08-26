@@ -11,7 +11,7 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.annotation.*;
 
 public class Contact implements Serializable {
-    private transient final static long serialVersionUID = -9223372036854652353L;
+    private final static long serialVersionUID = -9223372036854652353L;
     private final int zipCode;
     private final String phone;
 
