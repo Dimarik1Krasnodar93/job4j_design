@@ -6,6 +6,9 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Arrays;
 import java.util.stream.Stream;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.annotation.*;
 
 public class Contact implements Serializable {
     private transient final static long serialVersionUID = -9223372036854652353L;
@@ -55,6 +58,5 @@ public class Contact implements Serializable {
                 throw new InvalidClassException("Incorrect serialization");
             }
         }
-
     }
 }
