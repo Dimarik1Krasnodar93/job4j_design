@@ -1,5 +1,6 @@
 package ru.job4j.serialization.java;
 
+import ru.job4j.serialization.SerialVersion;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
@@ -7,7 +8,7 @@ import java.util.Arrays;
 import java.util.stream.Stream;
 
 public class Contact implements Serializable {
-    private static long serialVersionUID;
+    private transient final static long serialVersionUID = -9223372036854652353L;
     private final int zipCode;
     private final String phone;
 
@@ -15,11 +16,6 @@ public class Contact implements Serializable {
         this.zipCode = zipCode;
         this.phone = phone;
         byte[] bytes = phone.getBytes();
-        serialVersionUID = 0;
-        for (int i = 0; i < bytes.length; i++) {
-            serialVersionUID += bytes[i] * Math.pow(10, bytes.length + 1 - i);
-        }
-        serialVersionUID = serialVersionUID + zipCode;
     }
 
     public int getZipCode() {
@@ -55,7 +51,7 @@ public class Contact implements Serializable {
                      new ObjectInputStream(fis)) {
             final Contact contactFromFile = (Contact) ois.readObject();
             System.out.println(contactFromFile);
-            if (contact.getSerialVersionUID() != contactFromFile.getSerialVersionUID()) {
+            if (contact.getSerialVersionUID() != SerialVersion.computeSerialVersion(contactFromFile)) {
                 throw new InvalidClassException("Incorrect serialization");
             }
         }
