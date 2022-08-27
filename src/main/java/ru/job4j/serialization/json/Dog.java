@@ -2,6 +2,7 @@ package ru.job4j.serialization.json;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import org.json.JSONPropertyIgnore;
 
 
 import javax.xml.bind.JAXBContext;
@@ -16,7 +17,7 @@ import java.io.StringWriter;
 @XmlRootElement (name = "dog")
 public class Dog {
 
-    public boolean isMale() {
+    public boolean getMale() {
         return isMale;
     }
 
@@ -37,8 +38,17 @@ public class Dog {
     @XmlAttribute
     private int yearBorn;
 
+    @JSONPropertyIgnore
+    public Dog[] getPets() {
+        return pets;
+    }
+
     @XmlElement
     private Dog[] pets;
+
+    public void setPets(Dog[] pets) {
+        this.pets = pets;
+    }
 
     public Dog() {
 
