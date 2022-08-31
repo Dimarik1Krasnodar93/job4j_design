@@ -34,11 +34,11 @@ categories_id int references categories(id)
 create table comments(
 	id serial primary key,
 	name varchar(255),
-	user_id int references users(id)
+	item_id int references items(id)
 );
 create table attachs (
 	id serial primary key,
 	name varchar(255),
-	user_id int references users(id)
+	item_id int references items(id)
 );
 
