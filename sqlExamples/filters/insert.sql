@@ -1,0 +1,10 @@
+insert into type (name) values ('СЫР');
+insert into type (name) values ('МОЛОКО');
+insert into type (name) values ('МЯСО');
+insert into type (name) values ('КОФЕ');
+insert into product (name, type_id, expired_date, price) values ('мороженое в стаканчике', 2, date '2022-09-01', 55.5);
+insert into product (name, type_id, expired_date, price) values ('мороженое Лакомка', 2, date '2022-09-15', 60.5);
+insert into product (name, type_id, expired_date, price) values ('Сыр Российский', 1, date '2022-10-15', 560.5);
+insert into product (name, type_id, expired_date, price) values ('Курица',3, date '2022-11-15', 360.2);
+insert into product (name, type_id, expired_date, price) values ('Курица',3, date '2022-11-16', 360.2);
+insert into product (name, type_id, expired_date, price) values ('Кофе с пенкой', 4, date '2022-12-15', 400);
