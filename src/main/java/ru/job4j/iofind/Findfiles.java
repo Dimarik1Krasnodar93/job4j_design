@@ -13,19 +13,19 @@ import java.util.regex.Pattern;
 import org.slf4j.*;
 
 public class Findfiles {
-    private static final Logger log = LoggerFactory.getLogger(Findfiles.class.getName());
+    private static final Logger Log = LoggerFactory.getLogger(Findfiles.class.getName());
     public static void main(String[] args) {
         ArgsName jvm = ArgsName.of(args);
         validate(args, jvm);
         System.setProperty("log,name", jvm.get("o"));
-        log.debug("Start");
+        Log.debug("Start");
         Predicate<Path> condition = getCondition(jvm);
         Path root = Paths.get(jvm.get("d"));
-        log.debug("Start search");
+        Log.debug("Start search");
         List<Path> lp = search(root, condition);
-        log.debug("Finish search");
-        for(Path temp : lp) {
-            log.debug(temp.toString());
+        Log.debug("Finish search");
+        for (Path temp : lp) {
+            Log.debug(temp.toString());
         }
     }
 
@@ -54,10 +54,10 @@ public class Findfiles {
     private static List<Path> search(Path path, Predicate<Path> condition) {
         SearchFiles searcher = new SearchFiles(condition);
         try {
-            log.debug("Start wolfFileTree");
+            Log.debug("Start wolfFileTree");
             Files.walkFileTree(path, searcher);
         } catch (IOException ex) {
-            log.error("IOException, ", ex);
+            Log.error("IOException, ", ex);
         }
         return searcher.getPaths();
 
