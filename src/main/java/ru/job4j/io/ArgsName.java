@@ -16,6 +16,10 @@ public class ArgsName {
         return rsl;
     }
 
+    public boolean contains(String key) {
+        return values.containsKey(key);
+    }
+
     private void parse(String[] args) {
         String[] splitStr;
         for (String str : args) {
