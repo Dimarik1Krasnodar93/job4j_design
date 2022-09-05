@@ -3,6 +3,7 @@ package ru.job4j.iofind;
 import org.slf4j.LoggerFactory;
 import ru.job4j.io.*;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -14,13 +15,17 @@ import org.slf4j.*;
 
 public class Findfiles {
     private static final Logger LOG = LoggerFactory.getLogger(Findfiles.class.getName());
-    public static void main(String[] args) {
-        ArgsName jvm = ArgsName.of(args);
-        validate(args, jvm);
-        System.setProperty("log,name", jvm.get("o"));
+    public static void main(String[] args) throws IOException {
         LOG.debug("Start");
+        validate(args);
+        ArgsName jvm = ArgsName.of(args);
+        LOG.debug("validate:");
+        LOG.debug(String.format("args:,  %s", args.toString()));
         Predicate<Path> condition = getCondition(jvm);
         Path root = Paths.get(jvm.get("d"));
+        if (!root.toFile().isDirectory()) {
+            throw new IOException("Path is not directory");
+        }
         LOG.debug("Start search");
         List<Path> lp = search(root, condition);
         LOG.debug("Finish search");
@@ -30,16 +35,10 @@ public class Findfiles {
     }
 
     private static Predicate<Path> getCondition(ArgsName jvm) {
-        Predicate<Path> condition =  new Predicate<Path>() {
-            @Override
-            public boolean test(Path path) {
-                return false;
-            }
-        };
+        Predicate<Path> condition;
         String searchText = jvm.get("n");
         String typeSearch = jvm.get("t");
         if ("regEx".equals(typeSearch)) {
-            Pattern pattern = Pattern.compile(searchText);
             condition = i -> Pattern.matches(searchText, i.getFileName().toString());
         } else if ("mask".equals(typeSearch)) {
             condition = i -> i.getFileName().toString().contains(searchText);
@@ -63,21 +62,9 @@ public class Findfiles {
 
     }
 
-    private static void validate(String[] args, ArgsName jvm) {
-        if (args.length < 2) {
-            throw new IllegalArgumentException("Agrs count should be more than 2");
-        }
-        if (!jvm.contains("d")) {
-            throw new IllegalArgumentException("jvm does not contain arg -d");
-        }
-        if (!jvm.contains("n")) {
-            throw new IllegalArgumentException("jvm does not contain arg -n");
-        }
-        if (!jvm.contains("t")) {
-            throw new IllegalArgumentException("jvm does not contain arg -t");
-        }
-        if (!jvm.contains("o")) {
-            throw new IllegalArgumentException("jvm does not contain arg -o");
+    private static void validate(String[] args) {
+        if (args.length < 4) {
+            throw new IllegalArgumentException("Agrs count should be more than 4");
         }
     }
 }
