@@ -18,7 +18,7 @@ create table cars (
 	name text,
 	body_id int references car_bodies(id),
 	engine_id int references car_engines(id),
-	transmission_id int
+	transmission_id int references car_transmissions(id)
 );
 
 insert into car_bodies (name) values ('Sedan'),
