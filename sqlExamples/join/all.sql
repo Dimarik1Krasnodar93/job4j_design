@@ -39,25 +39,32 @@ insert into teens(name, male) values ('Nadya', true);
 
 select * from employeers;
 
-select * from departments
-left join employeers on departments.id = employeers.department_id;
+select dep.name Департамент, emp.name Сотрудник
+from departments dep
+left join employeers emp on dep.id = emp.department_id;
+
+select dep.name Департамент, emp.name Сотрудник
+from employeers emp
+right join departments dep on dep.id = emp.department_id;
 
 select * from departments
 right join employeers
 on departments.id = employeers.department_id;
+
+
 select * from  departments
 cross join employeers;
 
-select * from  departments
-full join employeers
-on departments.id = employeers.department_id;
+select * from  departments dep
+full join employeers emp
+on dep.id = emp.department_id;
 
-select * from departments
-left join employeers
-on departments.id = employeers.department_id
+select * from departments dep
+left join employeers emp
+on dep.id = emp.department_id
 where employeers.id is null;
 
-select * from teens teens1
-cross join teens teens2
-where teens1.male != teens2.male
+select * from teens t1
+cross join teens t2
+where t1.male != t2.male
 
