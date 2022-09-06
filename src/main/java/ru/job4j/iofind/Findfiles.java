@@ -3,8 +3,7 @@ package ru.job4j.iofind;
 import org.slf4j.LoggerFactory;
 import ru.job4j.io.*;
 
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -24,13 +23,22 @@ public class Findfiles {
         Predicate<Path> condition = getCondition(jvm);
         Path root = Paths.get(jvm.get("d"));
         if (!root.toFile().isDirectory()) {
+            LOG.error("Path is not directory");
             throw new IOException("Path is not directory");
         }
         LOG.debug("Start search");
         List<Path> lp = search(root, condition);
         LOG.debug("Finish search");
-        for (Path temp : lp) {
-            LOG.debug(temp.toString());
+        outFile(jvm, lp);
+    }
+
+    private static void outFile(ArgsName jvm, List<Path> lp) {
+        try (PrintWriter out = new PrintWriter(new BufferedOutputStream(new FileOutputStream(jvm.get("o"))))) {
+            for (Path p : lp) {
+                out.println(p);
+            }
+        } catch (FileNotFoundException ex) {
+            LOG.error(ex.toString());
         }
     }
 
@@ -39,7 +47,7 @@ public class Findfiles {
         String searchText = jvm.get("n");
         String typeSearch = jvm.get("t");
         if ("regEx".equals(typeSearch)) {
-            condition = i -> Pattern.matches(searchText, i.getFileName().toString());
+            condition = i -> Pattern.compile(searchText).matcher(i.getFileName().toString()).find();
         } else if ("mask".equals(typeSearch)) {
             condition = i -> i.getFileName().toString().contains(searchText);
         } else if ("name".equals(typeSearch)) {
@@ -59,7 +67,6 @@ public class Findfiles {
             LOG.error("IOException, ", ex);
         }
         return searcher.getPaths();
-
     }
 
     private static void validate(String[] args) {
