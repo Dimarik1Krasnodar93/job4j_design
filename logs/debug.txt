@@ -7347,3 +7347,50 @@
 2022-09-06 09:04:57,091 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
 2022-09-06 09:04:57,092 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
 2022-09-06 09:05:24,613 DEBUG ru.job4j.iofind.Findfiles:main:31 - Finish search
+2022-09-07 09:07:44,858 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:07:44,864 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:07:44,867 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@2cfb4a64
+2022-09-07 09:07:44,868 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:07:44,869 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
+2022-09-07 09:08:21,785 DEBUG ru.job4j.iofind.Findfiles:main:31 - Finish search
+2022-09-07 09:25:47,989 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:25:47,994 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:25:48,011 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:25:48,012 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:25:48,016 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
+2022-09-07 09:26:58,204 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:27:05,781 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:27:05,798 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:27:15,616 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:27:15,623 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
+2022-09-07 09:28:01,103 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:28:09,092 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:28:09,102 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:28:17,371 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:28:17,377 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
+2022-09-07 09:29:23,558 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:29:25,128 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:29:25,137 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:29:25,138 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:29:25,143 DEBUG ru.job4j.iofind.Findfiles:search:64 - Start wolfFileTree
+2022-09-07 09:38:58,564 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:39:00,222 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:39:00,232 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:39:00,234 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:39:00,240 DEBUG ru.job4j.iofind.Findfiles:search:65 - Start wolfFileTree
+2022-09-07 09:39:33,354 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:39:34,720 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:39:34,730 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@33a10788
+2022-09-07 09:39:34,731 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:39:34,736 DEBUG ru.job4j.iofind.Findfiles:search:65 - Start wolfFileTree
+2022-09-07 09:39:54,778 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:39:54,782 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:39:54,784 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@2cfb4a64
+2022-09-07 09:39:54,784 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:39:54,785 DEBUG ru.job4j.iofind.Findfiles:search:65 - Start wolfFileTree
+2022-09-07 09:40:19,317 DEBUG ru.job4j.iofind.Findfiles:main:18 - Start
+2022-09-07 09:40:19,321 DEBUG ru.job4j.iofind.Findfiles:main:21 - validate:
+2022-09-07 09:40:19,324 DEBUG ru.job4j.iofind.Findfiles:main:22 - args:,  [Ljava.lang.String;@2cfb4a64
+2022-09-07 09:40:19,325 DEBUG ru.job4j.iofind.Findfiles:main:29 - Start search
+2022-09-07 09:40:19,326 DEBUG ru.job4j.iofind.Findfiles:search:65 - Start wolfFileTree
+2022-09-07 09:40:45,495 DEBUG ru.job4j.iofind.Findfiles:main:31 - Finish search

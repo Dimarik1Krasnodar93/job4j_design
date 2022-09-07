@@ -49,7 +49,8 @@ public class Findfiles {
         if ("regEx".equals(typeSearch)) {
             condition = i -> Pattern.compile(searchText).matcher(i.getFileName().toString()).find();
         } else if ("mask".equals(typeSearch)) {
-            condition = i -> i.getFileName().toString().contains(searchText);
+            String searchText2 = searchText.replace(".?", "(.*)");
+            condition = i -> i.getFileName().toString().matches(searchText2);
         } else if ("name".equals(typeSearch)) {
             condition = i -> i.getFileName().toString().equals(searchText);
         } else {
