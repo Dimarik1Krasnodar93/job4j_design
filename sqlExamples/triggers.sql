@@ -47,19 +47,19 @@ $$
 LANGUAGE 'plpgsql';
 
 create trigger tax_statement_trigger
-	before insert on products
-	for each statement
-	execute procedure taxBefore();
+	after insert on products
+    referencing new table as inserted
+    for each statement
+	execute procedure taxAfter();
 
-create trigger tax_row_after
-	after INSERT
+create trigger tax_row_before
+	before INSERT
 	on products
 	for each row
-	execute procedure taxAfter();
+	execute procedure taxBefore();
 
 create trigger copy_prices_after
 	after insert
 	on products
 	for each row
 	execute procedure copy_prices();
-
