@@ -10,8 +10,8 @@ create or replace function taxAfter()
 	returns trigger as
 	$$
 		BEGIN
-			update products
-			set price = price * 1.2;
+			new.price = new.price * 1.2
+			where id = (select id from inserted);
 			return NEW;
 		END;
 	$$
@@ -21,8 +21,7 @@ create or replace function taxBefore()
 returns trigger as
 $$
 	BEGIN
-		UPDATE products
-		set price  = price * 1.1;
+		new.price  = new.price * 1.1;
 		return NEW;
 	END;
 $$
