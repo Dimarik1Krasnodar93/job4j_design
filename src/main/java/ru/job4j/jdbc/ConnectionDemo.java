@@ -10,9 +10,6 @@ import java.util.Properties;
 
 public class ConnectionDemo {
     private final Properties prs =  new Properties();
-    private String url;
-    private String login;
-    private String password;
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ConnectionDemo demo = new ConnectionDemo();
@@ -21,7 +18,7 @@ public class ConnectionDemo {
     }
 
     public void getConnection() {
-        try (Connection connection = DriverManager.getConnection(url, login, password)) {
+        try (Connection connection = DriverManager.getConnection(prs.get("url").toString(), prs)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
@@ -34,9 +31,6 @@ public class ConnectionDemo {
         final ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("app.properties")) {
             prs.load(io);
-            url = prs.get("url").toString();
-            login = prs.get("login").toString();
-            password = prs.get("password").toString();
         } catch (IOException e) {
             e.printStackTrace();
         }
