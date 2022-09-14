@@ -13,12 +13,13 @@ public class ConnectionDemo {
 
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
         ConnectionDemo demo = new ConnectionDemo();
-        demo.loadProperties();
-        demo.getConnection();
+        Properties prs = demo.loadProperties();
+        demo.getConnection(prs);
     }
 
-    public void getConnection() {
-        try (Connection connection = DriverManager.getConnection(prs.get("url").toString(), prs)) {
+    public void getConnection(Properties prs) {
+        try (Connection connection = DriverManager.getConnection(prs.get("url").toString(),
+                prs)) {
             DatabaseMetaData metaData = connection.getMetaData();
             System.out.println(metaData.getUserName());
             System.out.println(metaData.getURL());
@@ -27,12 +28,14 @@ public class ConnectionDemo {
         }
     }
 
-    private void loadProperties() {
+    private Properties loadProperties() {
+        Properties prs =  new Properties();
         final ClassLoader loader = ConnectionDemo.class.getClassLoader();
         try (InputStream io = loader.getResourceAsStream("app.properties")) {
             prs.load(io);
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return prs;
     }
 }
