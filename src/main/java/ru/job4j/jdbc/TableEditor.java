@@ -12,16 +12,13 @@ public class TableEditor implements AutoCloseable {
 
     private Connection connection;
 
-    private Properties properties;
     private Statement st;
 
     public TableEditor(Properties properties) {
-        this.properties = properties;
-        initConnection();
+        initConnection(properties);
     }
 
-    private void initConnection() {
-        loadProperties();
+    private void initConnection(Properties properties) {
         try {
             connection = DriverManager.getConnection(properties.get("url").toString(), properties);
             st = connection.createStatement();
@@ -30,14 +27,6 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-    private void loadProperties() {
-        final ClassLoader classLoader = TableEditor.class.getClassLoader();
-        try (InputStream io = classLoader.getResourceAsStream("app.properties")) {
-            properties.load(io);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public void createTable(String tableName) {
         try {
@@ -103,12 +92,20 @@ public class TableEditor implements AutoCloseable {
         if (connection != null) {
             connection.close();
         }
+        if (st != null) {
+            st.close();
+        }
     }
 
     public static void main(String[] args) throws Exception {
         Properties prs = new Properties();
+        final ClassLoader classLoader = TableEditor.class.getClassLoader();
+        try (InputStream io = classLoader.getResourceAsStream("app.properties")) {
+            prs.load(io);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
         try (TableEditor te = new TableEditor(prs)) {
-            te.initConnection();
             String tableName = "t" + System.currentTimeMillis();
             te.createTable(tableName);
             System.out.println(getTableScheme(te.connection, tableName));
@@ -119,7 +116,11 @@ public class TableEditor implements AutoCloseable {
             te.dropColumn(tableName, "newname");
             System.out.println(getTableScheme(te.connection, tableName));
             te.dropTable(tableName);
-            System.out.println(getTableScheme(te.connection, tableName));
+            try {
+                System.out.println(getTableScheme(te.connection, tableName));
+            } catch (SQLException ex) {
+                System.out.println("Table has been already deleted");
+            }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }

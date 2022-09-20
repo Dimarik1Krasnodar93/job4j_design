@@ -62,7 +62,6 @@ public class ImportDB {
         }
     }
 
-
     public static void main(String[] args) throws Exception {
         Properties cfg = new Properties();
         try (InputStream in = ImportDB.class.getClassLoader().getResourceAsStream("app1.properties")) {
