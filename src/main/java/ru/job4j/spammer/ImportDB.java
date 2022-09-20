@@ -29,10 +29,10 @@ public class ImportDB {
         try (BufferedReader rd = new BufferedReader(new FileReader(dump))) {
             rd.lines().forEach(i -> {
                 String[] str = i.split(";");
-                if (Arrays.stream(str).count() != 2) {
+                if (str.length != 2) {
                     throw new IllegalArgumentException("Количество параметров должно быть равно 2");
                 }
-                if (str[0] == "" || str[1] == "") {
+                if (str[0].isBlank() || str[1].isBlank()) {
                     throw new IllegalArgumentException("Все аргументы должны быть заполнены");
                 }
                 users.add(new User(str[0], str[1]));
