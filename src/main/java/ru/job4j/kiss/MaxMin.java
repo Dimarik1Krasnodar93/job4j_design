@@ -12,7 +12,7 @@ public class MaxMin {
     }
 
     public <T> T min(List<T> value, Comparator<T> comparator) {
-        BinaryOperator<T> binaryOperator = (t,v) -> comparator.compare(v, t);
+        BinaryOperator<T> binaryOperator = BinaryOperator.minBy(comparator);
         return findMinMax(value, binaryOperator);
     }
 
