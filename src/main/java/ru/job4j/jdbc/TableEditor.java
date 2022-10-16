@@ -27,7 +27,6 @@ public class TableEditor implements AutoCloseable {
         }
     }
 
-
     public void createTable(String tableName) {
         try {
             var res = st.execute(String.format("create table %s (id serial primary key)", tableName));
