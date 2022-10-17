@@ -29,7 +29,7 @@ class GeneratorObjTest {
         Map<String, String> map = new HashMap<>();
         map.put("name", "Petr Arsentev");
         map.put("subject2", "you");
-        assertThatThrownBy(() ->generatorobj.produce(template, map))
+        assertThatThrownBy(() -> generatorobj.produce(template, map))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 }
