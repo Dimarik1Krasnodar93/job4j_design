@@ -15,12 +15,7 @@ class MaxMinTest {
         List<Integer> list = List.of(4, -5, 1, 2, 4, 3, 99, 5);
         int expected = 99;
         MaxMin maxmin = new MaxMin();
-        assertThat(maxmin.max(list, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return compare(o1, o2);
-            }
-        })).isEqualTo(expected);
+        assertThat(maxmin.max(list, Integer::compare)).isEqualTo(expected);
     }
 
     @Test
@@ -28,11 +23,6 @@ class MaxMinTest {
         List<Integer> list = List.of(4, -5, 1, 2, 4, 3, 99, 5);
         int expected = -5;
         MaxMin maxmin = new MaxMin();
-        assertThat(maxmin.min(list, new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return compare(o1, o2);
-            }
-        })).isEqualTo(expected);
+        assertThat(maxmin.min(list, Integer::compare)).isEqualTo(expected);
     }
 }
