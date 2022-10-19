@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.*;
 class GeneratorObjTest {
 
     @Test
-    void produce() {
+    void WhenproduceThenTrue() {
         String template = "I am a ${name}, Who are ${subject}? ";
         String expected = "I am a Petr Arsentev, Who are you? ";
         GeneratorObj generatorobj = new GeneratorObj();
@@ -22,9 +22,8 @@ class GeneratorObjTest {
     }
 
     @Test
-    void produceException() {
+    void WhenproduceThenException() {
         String template = "I am a ${name}, Who are ${subject}? ";
-        String expected = "I am a Petr Arsentev, Who are you? ";
         GeneratorObj generatorobj = new GeneratorObj();
         Map<String, String> map = new HashMap<>();
         map.put("name", "Petr Arsentev");
