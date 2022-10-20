@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -37,5 +38,30 @@ class CinemaTest {
         List<Session> sessions = cinema.find(s -> s == session);
         assertThat(sessions.size()).isEqualTo(1);
         assertThat(sessions.get(0)).isEqualTo(session);
+    }
+
+    @Test
+    public void whenBuyThenGetTicketNoValidPosition() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        assertThatThrownBy(() -> cinema.buy(account, -1, 1, date)).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenBuyThenGetTicketNoValidDate() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = new GregorianCalendar();
+        assertThatThrownBy(() -> cinema.buy(account, 1, 1, new GregorianCalendar(2017, 1, 1))).isInstanceOf(IllegalArgumentException.class);
+    }
+
+    @Test
+    public void whenBuyThenGetTicketsSeatIsTaken() {
+        Account account = new AccountCinema();
+        Cinema cinema = new Cinema3D();
+        Calendar date = Calendar.getInstance();
+        Ticket ticket = cinema.buy(account, 1, 1, date);
+        assertThatThrownBy(() ->  cinema.buy(account, 1, 1, date)).isInstanceOf(IllegalArgumentException.class);
     }
 }
