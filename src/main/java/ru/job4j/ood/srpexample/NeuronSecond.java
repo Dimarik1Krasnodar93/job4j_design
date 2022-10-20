@@ -4,6 +4,11 @@ public class NeuronSecond {
     private double weight;
     private boolean active;
 
+    public NeuronSecond(double weight, boolean active) {
+        this.weight = weight;
+        this.active = active;
+    }
+
     public double getWeight() {
         return weight;
     }
@@ -17,11 +22,6 @@ public class NeuronSecond {
     }
 
     public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public NeuronSecond(double weight, boolean active) {
-        this.weight = weight;
         this.active = active;
     }
 
