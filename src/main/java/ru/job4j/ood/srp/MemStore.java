@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class MemStore implements Store {
 
-    private final List employees = new ArrayList<>();
+    private final List<Employee> employees = new ArrayList<>();
 
     @Override
     public void add(Employee em) {
@@ -15,7 +15,8 @@ public class MemStore implements Store {
     }
 
     @Override
-    public List findBy(Predicate<Employee> filter) {
-        return (List) employees.stream().filter(filter).collect(Collectors.toList());
+    public List<Employee> findBy(Predicate<Employee> filter) {
+        return employees.stream().filter(filter).collect(Collectors.toList());
     }
+
 }
