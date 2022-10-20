@@ -35,8 +35,8 @@ class GeneratorObjTest {
     }
 
     @Test
-    void whenEmptyThenException() {
-        String template = "I am a , Who are ? ";
+    void whenEmptyTemplateThenException() {
+        String template = "I am a  ${}, Who are $? ";
         GeneratorObj generatorobj = new GeneratorObj();
         Map<String, String> map = new HashMap<>();
         map.put("name", "Petr Arsentev");
