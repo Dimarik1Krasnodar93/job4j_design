@@ -7,6 +7,9 @@ import java.util.function.Predicate;
 
 public class MaxMin {
     public <T> T max(List<T> value, Comparator<T> comparator) {
+        if (value.size() == 0) {
+            throw new IllegalArgumentException();
+        }
         BinaryOperator<T> binaryOperator =  BinaryOperator.maxBy(comparator);
         return findMinMax(value, binaryOperator);
     }
@@ -26,6 +29,5 @@ public class MaxMin {
         }
         return result;
     }
-
 
 }

@@ -2,6 +2,7 @@ package ru.job4j.kiss;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -25,4 +26,13 @@ class MaxMinTest {
         MaxMin maxmin = new MaxMin();
         assertThat(maxmin.min(list, Integer::compare)).isEqualTo(expected);
     }
+
+    @Test
+    void whenMinEmptyListThenException() {
+        List<Integer> list = new ArrayList<>();
+        MaxMin maxmin = new MaxMin();
+        assertThatThrownBy(() -> maxmin.min(list, Integer::compare)).isInstanceOf(IllegalArgumentException.class
+        );
+    }
+
 }
