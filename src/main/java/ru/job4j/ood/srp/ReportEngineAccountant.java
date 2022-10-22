@@ -5,11 +5,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class ReportEngineHR implements Report {
-
+public class ReportEngineAccountant implements Report {
     private Store store;
 
-    public ReportEngineHR(Store store) {
+    public ReportEngineAccountant(Store store) {
         this.store = store;
     }
 
@@ -22,10 +21,9 @@ public class ReportEngineHR implements Report {
                 .append(FormatOutput.SEPARATOR);
         for (Employee employee : listEmployee) {
             text.append(employee.getName()).append(";")
-                    .append(employee.getSalary()).append(";")
+                    .append(String.format(FormatOutput.DOUBLE_FORMAT, employee.getSalary() * 0.87)).append(";")
                     .append(FormatOutput.SEPARATOR);
         }
         return text.toString();
     }
-
 }

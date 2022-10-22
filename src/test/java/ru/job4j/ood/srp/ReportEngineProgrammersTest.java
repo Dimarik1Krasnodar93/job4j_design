@@ -20,23 +20,23 @@ class ReportEngineProgrammersTest {
         store.add(worker);
         StringBuilder expect = new StringBuilder()
                 .append("<html>")
-                .append(System.lineSeparator())
+                .append(FormatOutput.SEPARATOR)
                 .append("<head>Name; Hired; Fired; Salary;</head>")
-                .append(System.lineSeparator())
+                .append(FormatOutput.SEPARATOR)
                 .append("<head>")
                 .append(worker2.getName()).append(";")
                 .append(DATE_FORMAT.format(worker2.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker2.getFired().getTime())).append(";")
                 .append(worker2.getSalary()).append(";")
                 .append("</head>")
-                .append(System.lineSeparator())
+                .append(FormatOutput.SEPARATOR)
                 .append("<head>")
                 .append(worker.getName()).append(";")
                 .append(DATE_FORMAT.format(worker.getHired().getTime())).append(";")
                 .append(DATE_FORMAT.format(worker.getFired().getTime())).append(";")
                 .append(worker.getSalary()).append(";")
                 .append("</head>")
-                .append(System.lineSeparator())
+                .append(FormatOutput.SEPARATOR)
                 .append("</html>");
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
