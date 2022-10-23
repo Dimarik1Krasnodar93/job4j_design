@@ -10,7 +10,7 @@ public class Testlcp {
     }
 
     public static void getAveragePassegeers(Cars car) {
-        if(car.getClass() == Bus.class) {
+        if (car.getClass() == Bus.class) {
             System.out.println("More than 40 passangeers");
         } else if (car.getClass() == Car.class) {
             System.out.println("Less than 3 passangeers");
