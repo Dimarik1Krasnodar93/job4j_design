@@ -1,5 +1,11 @@
 package ru.job4j.ood.srp;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlRootElement;
+import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.Comparator;
 import java.util.List;
@@ -9,7 +15,8 @@ public class ReportEngine implements Report {
 
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
 
-    private Store store;
+    @XmlAttribute
+    private final Store store;
 
     public ReportEngine(Store store) {
         this.store = store;

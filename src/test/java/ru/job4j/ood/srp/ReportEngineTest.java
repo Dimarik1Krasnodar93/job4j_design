@@ -27,5 +27,4 @@ public class ReportEngineTest {
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 
-
 }
