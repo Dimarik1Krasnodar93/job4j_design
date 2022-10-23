@@ -22,10 +22,10 @@ class ReportEngineAccountantTest {
                 .append("Name; Salary;")
                 .append(FormatOutput.SEPARATOR)
                 .append(worker2.getName()).append(";")
-                .append(String.format(FormatOutput.DOUBLE_FORMAT, worker2.getSalary() * 0.87)).append(";")
+                .append(String.format(FormatOutput.DOUBLE_FORMAT, worker2.getSalary() * ReportEngineAccountant.TAX_KOEFF)).append(";")
                 .append(FormatOutput.SEPARATOR)
                 .append(worker.getName()).append(";")
-                .append(String.format(FormatOutput.DOUBLE_FORMAT, worker.getSalary() * 0.87)).append(";")
+                .append(String.format(FormatOutput.DOUBLE_FORMAT, worker.getSalary() * ReportEngineAccountant.TAX_KOEFF)).append(";")
                 .append(FormatOutput.SEPARATOR);
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
 

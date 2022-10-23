@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportEngineAccountant implements Report {
-    private final static double TAX_KOEFF = 0.87;
+    public final static double TAX_KOEFF = 0.87;
     private Store store;
 
     public ReportEngineAccountant(Store store) {
