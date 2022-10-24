@@ -1,4 +1,4 @@
-package ru.job4j.ood.lcp;
+package ru.job4j.ood.icp;
 
 public class Testlcp {
     public static void main(String[] args) {

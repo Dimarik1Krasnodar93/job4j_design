@@ -1,4 +1,4 @@
-package ru.job4j.ood.lcp;
+package ru.job4j.ood.icp;
 
 public abstract class Car implements Cars {
     protected double petrol;

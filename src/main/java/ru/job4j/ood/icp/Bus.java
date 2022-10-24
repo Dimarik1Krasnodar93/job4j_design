@@ -1,4 +1,4 @@
-package ru.job4j.ood.lcp;
+package ru.job4j.ood.icp;
 
 public class Bus extends Car {
 
