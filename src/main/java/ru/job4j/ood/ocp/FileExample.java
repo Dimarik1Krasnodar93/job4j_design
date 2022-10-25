@@ -3,6 +3,7 @@ package ru.job4j.ood.ocp;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
 import java.util.List;
 import java.util.function.Consumer;
 
@@ -32,7 +33,7 @@ public class FileExample {
     }
 
     private static class SimpleFileWithSubstring extends SimpleFile  {
-        private FileWriter filewriter;
+        private Writer filewriter;
 
         public SimpleFileWithSubstring(String path) throws IOException  {
             filewriter = new FileWriter(path);

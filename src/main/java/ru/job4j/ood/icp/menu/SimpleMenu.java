@@ -5,7 +5,7 @@ import java.util.*;
 import ru.job4j.ood.icp.menu.ActionDelegate;
 import ru.job4j.ood.icp.menu.MenuItem;
 
-public class SimpleMenu implements ru.job4j.ood.isp.menu.Menu {
+public class SimpleMenu implements Menu {
 
     private final List<MenuItem> rootElements = new ArrayList<>();
 
@@ -16,12 +16,29 @@ public class SimpleMenu implements ru.job4j.ood.isp.menu.Menu {
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
-        return null;
+        Optional<MenuItemInfo> result = Optional.empty();
+//        for (MenuItem item : rootElements) {
+////            if (itemName.equals(item.getName())) {
+////                result = Optional.of(item.);
+////            }
+//        }
+        return result;
     }
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
-        return null;
+        Iterator<MenuItemInfo> result = new Iterator<MenuItemInfo>() {
+            @Override
+            public boolean hasNext() {
+                return this.;
+            }
+
+            @Override
+            public MenuItemInfo next() {
+                return null;
+            }
+        };
+        return result;
     }
 
     private Optional<ItemInfo> findItem(String name) {
