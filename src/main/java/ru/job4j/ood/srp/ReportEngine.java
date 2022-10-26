@@ -16,7 +16,7 @@ public class ReportEngine implements Report {
     public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("dd:MM:yyyy HH:mm");
 
     @XmlAttribute
-    private final Store store ;
+    private final Store store;
 
     public ReportEngine(Store store) {
         this.store = store;

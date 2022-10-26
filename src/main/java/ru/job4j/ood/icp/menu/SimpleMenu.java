@@ -30,7 +30,7 @@ public class SimpleMenu implements Menu {
         Iterator<MenuItemInfo> result = new Iterator<MenuItemInfo>() {
             @Override
             public boolean hasNext() {
-                return this.;
+                return false;
             }
 
             @Override

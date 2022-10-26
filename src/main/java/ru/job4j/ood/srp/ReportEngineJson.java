@@ -28,7 +28,7 @@ public class ReportEngineJson implements Report  {
     @Override
     public String generate(Predicate<Employee> filter) {
         String result = "";
-        Gson gson = new GsonBuilder().create();;
+        Gson gson = new GsonBuilder().create();
         result = gson.toJson(this);
         StringBuilder text = new StringBuilder();
         text.append("Name; Hired; Fired; Salary;")
