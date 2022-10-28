@@ -32,4 +32,16 @@ public abstract class Car implements Cars {
         }
     }
 
+    @Override
+    public int getMaxSpeed(int countPassengeers) {
+        int result = 160;
+        if (countPassengeers > 2) {
+            result = 90;
+        }
+        if (petrol < 2) {
+            result = 30;
+        }
+        return result;
+    }
+
 }

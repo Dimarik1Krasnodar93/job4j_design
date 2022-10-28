@@ -6,4 +6,5 @@ public interface Cars {
     double getPetrol();
     double getFuelTank();
     void setFuelTank(double fuelTank);
+    int getMaxSpeed(int countPassengeers);
 }
