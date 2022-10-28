@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.Expose;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportEngineJson implements Report  {
@@ -13,6 +14,7 @@ public class ReportEngineJson implements Report  {
 
     private final Store store;
 
+    private Gson gson;
 
 
     public ReportEngineJson(Store store) {
@@ -21,25 +23,15 @@ public class ReportEngineJson implements Report  {
     }
 
     private void init() {
-       // gson = new GsonBuilder().create();
+        gson = new GsonBuilder().setPrettyPrinting().create();
     }
-
 
     @Override
     public String generate(Predicate<Employee> filter) {
         String result = "";
-        Gson gson = new GsonBuilder().create();
-        result = gson.toJson(this);
-        StringBuilder text = new StringBuilder();
-        text.append("Name; Hired; Fired; Salary;")
-                .append(FormatOutput.SEPARATOR);
-        for (Employee employee : store.findBy(filter)) {
-            text.append(employee.getName()).append(";")
-                    .append(DATE_FORMAT.format(employee.getHired().getTime())).append(";")
-                    .append(DATE_FORMAT.format(employee.getFired().getTime())).append(";")
-                    .append(employee.getSalary()).append(";")
-                    .append(FormatOutput.SEPARATOR);
-        }
-        return text.toString();
+        gson = new GsonBuilder().create();
+        List<Employee> employees = store.findBy(filter);
+        result = gson.toJson(employees);
+        return result;
     }
 }

@@ -1,0 +1,3 @@
+В предыдущих уроках было написано, что инициализация делается так:
+final Gson gson = new GsonBuilder.create();
+https://job4j.ru/profile/exercise/174/task/327/336549
