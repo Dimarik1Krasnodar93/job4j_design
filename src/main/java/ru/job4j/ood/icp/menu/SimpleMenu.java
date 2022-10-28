@@ -5,32 +5,49 @@ import java.util.*;
 import ru.job4j.ood.icp.menu.ActionDelegate;
 import ru.job4j.ood.icp.menu.MenuItem;
 
+import javax.swing.text.html.Option;
+
 public class SimpleMenu implements Menu {
 
     private final List<MenuItem> rootElements = new ArrayList<>();
 
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
-        return false;
+        if (parentName.equals("")) {
+            rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+        } else {
+            MenuItem parentItem = findItem(parentName).orElseThrow().menuItem;
+        }
+        return true;
+    }
+
+    private Optional<MenuItem> findMenuItem(String parent) {
+        Optional<MenuItem> result = Optional.empty();
+        for (MenuItem menuItem : rootElements) {
+            if (parent.equals(parent)) {
+                result = Optional.of(menuItem);
+                break;
+            }
+        }
+        return result;
     }
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
         Optional<MenuItemInfo> result = Optional.empty();
-//        for (MenuItem item : rootElements) {
-////            if (itemName.equals(item.getName())) {
-////                result = Optional.of(item.);
-////            }
-//        }
+
         return result;
     }
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
         Iterator<MenuItemInfo> result = new Iterator<MenuItemInfo>() {
+
+            DFSIterator iterator = new DFSIterator();
+
             @Override
             public boolean hasNext() {
-                return false;
+                return iterator.hasNext();
             }
 
             @Override
