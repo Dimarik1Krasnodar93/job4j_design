@@ -5,8 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class AbstractStore implements Store {
-    protected List<Food> goods = new ArrayList<>();
+public abstract class AbstractStore implements Store {
+    protected final List<Food> goods = new ArrayList<>();
 
     public AbstractStore() {
 
@@ -14,16 +14,14 @@ public class AbstractStore implements Store {
 
     @Override
     public List<Food> getList() {
-        return goods;
+        return new ArrayList<>(goods);
     }
 
     @Override
-    public boolean addToStore(Food food) {
-        boolean result = false;
-        goods.add(food);
-        result = true;
-        return result;
+    public boolean add(Food food) {
+        return isExpired(food) ? false : goods.add(food);
     }
 
+    protected abstract boolean isExpired(Food food);
 
 }

@@ -7,17 +7,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
 class ControlQualityTest {
 
     @Test
     void testMain() {
-        Predicate<Food> predicateWarehouse = i -> i.getPercentExpiry() < 25;
-        Predicate<Food> predicateShop = i -> i.getPercentExpiry() >= 25 && i.getPercentExpiry() <= 75;
-        Predicate<Food> predicateShopDiscount = i -> i.getPercentExpiry() > 75 && i.getPercentExpiry() < 100;
-        ControlQuality controlQuality = new ControlQuality(predicateWarehouse, predicateShop, predicateShopDiscount);
+
+        ControlQuality controlQuality = new ControlQuality();
         Food food1 = new Bread("Bread1", LocalDateTime.of(2025, 12, 21, 0, 0),
                 LocalDateTime.of(2022, 10, 21, 0, 0),  50, 5);
         Food food2 = new Bread("Bread2", LocalDateTime.of(2022, 11, 21, 0, 0),
@@ -32,13 +29,13 @@ class ControlQualityTest {
                 LocalDateTime.of(2022, 3, 21, 0, 0),  50, 5);
         Food food7 = new Meat("Meat5", LocalDateTime.of(2022, 12, 21, 0, 0),
                 LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
-        controlQuality.addToStore(food1);
-        controlQuality.addToStore(food2);
-        controlQuality.addToStore(food3);
-        controlQuality.addToStore(food4);
-        controlQuality.addToStore(food5);
-        controlQuality.addToStore(food6);
-        controlQuality.addToStore(food7);
+        controlQuality.add(food1);
+        controlQuality.add(food2);
+        controlQuality.add(food3);
+        controlQuality.add(food4);
+        controlQuality.add(food5);
+        controlQuality.add(food6);
+        controlQuality.add(food7);
         List<Food> goodsShop = new ArrayList<>();
         List<Food> goodsTrash = new ArrayList<>();
         List<Food> goodsWarehouse = new ArrayList<>();
