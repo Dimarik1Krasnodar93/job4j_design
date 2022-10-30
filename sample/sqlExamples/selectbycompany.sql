@@ -35,7 +35,6 @@ from company
 left join person on company.id = person.company_id
 GROUP by company.name
 having count(person.id) in  (select count(person.id) persons
-from company
-left join person on company.id = person.company_id
-GROUP by company.name
+from person
+GROUP by person.company_id
 order by persons desc limit 1)
