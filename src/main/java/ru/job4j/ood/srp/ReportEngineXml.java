@@ -19,15 +19,8 @@ import java.util.function.Predicate;
 @XmlRootElement
 public class ReportEngineXml implements Report {
 
-    public static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ");
-
-    @XmlTransient
     private final Store store;
-    @XmlElement
-    private List<Employee> list;
-    @XmlTransient
-    private JAXBContext context;
-    @XmlTransient
+
     private Marshaller marshaller;
 
     public ReportEngineXml() {
@@ -41,7 +34,7 @@ public class ReportEngineXml implements Report {
 
     private void init() {
         try {
-            context = JAXBContext.newInstance(ReportEngineXml.class);
+            JAXBContext context = JAXBContext.newInstance(ReportEngineXml.class);
             marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         } catch (JAXBException ex) {
@@ -52,15 +45,33 @@ public class ReportEngineXml implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         String result = "";
-        Predicate<Employee> pre = i -> true;
-        list = store.findBy(pre);
         StringWriter stringwriter = new StringWriter();
         try {
-            marshaller.marshal(this, stringwriter);
+            List<Employee> employees = store.findBy(filter);
+            marshaller.marshal(new Employees(employees), stringwriter);
             result = stringwriter.toString();
         } catch (JAXBException ex) {
             ex.printStackTrace();
         }
         return result;
+    }
+
+
+    @XmlRootElement(name = "employees")
+    private static class Employees {
+
+        private List<Employee> employees;
+
+        public Employees(List<Employee> employees) {
+            this.employees = employees;
+        }
+
+        public List<Employee> getEmployees() {
+            return employees;
+        }
+
+        public void setEmployees(List<Employee> employees) {
+            this.employees = employees;
+        }
     }
 }
