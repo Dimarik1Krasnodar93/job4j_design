@@ -19,9 +19,9 @@ public abstract class AbstractStore implements Store {
 
     @Override
     public boolean add(Food food) {
-        return isExpired(food) ? false : goods.add(food);
+        return isNotExpired(food) ? false : goods.add(food);
     }
 
-    protected abstract boolean isExpired(Food food);
+    protected abstract boolean isNotExpired(Food food);
 
 }

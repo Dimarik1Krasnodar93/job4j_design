@@ -6,7 +6,7 @@ public class Trash extends AbstractStore {
 
 
 
-    protected boolean isExpired(Food food) {
+    protected boolean isNotExpired(Food food) {
         Predicate<Food> predicateShop = i -> i.getPercentExpiry() >= 25 && i.getPercentExpiry() <= 75;
         return predicateShop.test(food);
     }
