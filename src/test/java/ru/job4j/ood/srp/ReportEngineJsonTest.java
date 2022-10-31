@@ -87,6 +87,5 @@ class ReportEngineJsonTest {
         expect.append("  }");
         expect.append(FormatOutput.SEPARATOR);
         expect.append("\r]");
-        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }

@@ -32,7 +32,7 @@ where company.id != 5;
 select company.name,
 count(person.id) persons
 from company
-left join person on company.id = person.company_id
+join person on company.id = person.company_id
 GROUP by company.name
 having count(person.id) in  (select count(person.id) persons
 from person
