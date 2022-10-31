@@ -12,7 +12,6 @@ public class Shop extends AbstractStore {
             if (predicateShopDiscount.test(food)) {
                 food.setDiscount();
             }
-            goods.add(food);
         }
         return isAdded;
     }
