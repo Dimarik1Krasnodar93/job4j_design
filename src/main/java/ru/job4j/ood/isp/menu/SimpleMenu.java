@@ -1,11 +1,6 @@
-package ru.job4j.ood.icp.menu;
+package ru.job4j.ood.isp.menu;
 
 import java.util.*;
-
-import ru.job4j.ood.icp.menu.ActionDelegate;
-import ru.job4j.ood.icp.menu.MenuItem;
-
-import javax.swing.text.html.Option;
 
 public class SimpleMenu implements Menu {
 

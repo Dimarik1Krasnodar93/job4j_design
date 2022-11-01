@@ -1,7 +1,14 @@
 package ru.job4j.ood.lsp;
 
+import ru.job4j.ood.lsp.model.Bread;
+import ru.job4j.ood.lsp.model.Food;
+import ru.job4j.ood.lsp.model.Meat;
+import ru.job4j.ood.lsp.store.Shop;
+import ru.job4j.ood.lsp.store.Store;
+import ru.job4j.ood.lsp.store.Trash;
+import ru.job4j.ood.lsp.store.Warehouse;
+
 import java.time.LocalDateTime;
-import java.util.function.Predicate;
 
 public class ControlQuality {
     private Store shop = new Shop();

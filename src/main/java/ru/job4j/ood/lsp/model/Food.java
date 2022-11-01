@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.model;
 
 import java.sql.Timestamp;
 import java.time.LocalDate;
@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 
 public abstract class Food {
     protected String name;
+
+
+
     protected LocalDateTime expiryDate;
     protected LocalDateTime createDate;
     protected float price;
@@ -23,12 +26,12 @@ public abstract class Food {
         this.discount = discount;
     }
 
-    public double getPercentExpiry() {
-        double dNumerator = Timestamp.valueOf(expiryDate).getTime() - System.currentTimeMillis();
-        double dDenominator = (Timestamp.valueOf(expiryDate).getTime() - Timestamp.valueOf(createDate).getTime());
-        double dResult = 100 - 100 * dNumerator / dDenominator;
-        return 100 - 100 * (Timestamp.valueOf(expiryDate).getTime() - System.currentTimeMillis())
-                / (Timestamp.valueOf(expiryDate).getTime() - Timestamp.valueOf(createDate).getTime());
+    public LocalDateTime getExpiryDate() {
+        return expiryDate;
+    }
+
+    public LocalDateTime getCreateDate() {
+        return createDate;
     }
 
     public void setDiscount() {

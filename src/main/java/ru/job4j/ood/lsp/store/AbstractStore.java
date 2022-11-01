@@ -1,9 +1,9 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.store;
 
-import java.time.LocalDate;
+import ru.job4j.ood.lsp.model.Food;
+
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 
 public abstract class AbstractStore implements Store {
     private final List<Food> goods = new ArrayList<>();
@@ -19,7 +19,7 @@ public abstract class AbstractStore implements Store {
 
     @Override
     public boolean add(Food food) {
-        return isNotExpired(food) ? false : goods.add(food);
+        return isNotExpired(food) ? goods.add(food) : false;
     }
 
     protected abstract boolean isNotExpired(Food food);

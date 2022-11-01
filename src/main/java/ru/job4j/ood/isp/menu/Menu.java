@@ -1,7 +1,4 @@
-package ru.job4j.ood.icp.menu;
-
-import ru.job4j.ood.icp.menu.ActionDelegate;
-import ru.job4j.ood.icp.menu.MenuItem;
+package ru.job4j.ood.isp.menu;
 
 import java.util.List;
 import java.util.Objects;

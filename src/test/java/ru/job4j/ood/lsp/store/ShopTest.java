@@ -1,4 +1,4 @@
-package ru.job4j.ood.lsp;
+package ru.job4j.ood.lsp.store;
 
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.lsp.model.Bread;
@@ -9,14 +9,13 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
-class ControlQualityTest {
+class ShopTest {
 
     @Test
-    void testMain() {
-
-        ControlQuality controlQuality = new ControlQuality();
+    void add() {
         Food food1 = new Bread("Bread1", LocalDateTime.of(2025, 12, 21, 0, 0),
                 LocalDateTime.of(2022, 10, 21, 0, 0),  50, 5);
         Food food2 = new Bread("Bread2", LocalDateTime.of(2022, 11, 21, 0, 0),
@@ -31,25 +30,19 @@ class ControlQualityTest {
                 LocalDateTime.of(2022, 3, 21, 0, 0),  50, 5);
         Food food7 = new Meat("Meat5", LocalDateTime.of(2022, 12, 21, 0, 0),
                 LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
-        controlQuality.add(food1);
-        controlQuality.add(food2);
-        controlQuality.add(food3);
-        controlQuality.add(food4);
-        controlQuality.add(food5);
-        controlQuality.add(food6);
-        controlQuality.add(food7);
+        Shop shop = new Shop();
+        shop.add(food1);
+        shop.add(food2);
+        shop.add(food3);
+        shop.add(food4);
+        shop.add(food5);
+        shop.add(food6);
+        shop.add(food7);
         List<Food> goodsShop = new ArrayList<>();
-        List<Food> goodsTrash = new ArrayList<>();
-        List<Food> goodsWarehouse = new ArrayList<>();
-        goodsWarehouse.add(food1);
-        goodsWarehouse.add(food2);
         goodsShop.add(food4);
         goodsShop.add(food5);
         goodsShop.add(food6);
         goodsShop.add(food7);
-        goodsTrash.add(food3);
-        assertThat(goodsShop.equals(controlQuality.getShop().getList()));
-        assertThat(goodsWarehouse.equals(controlQuality.getWarehouse().getList()));
-        assertThat(goodsTrash.equals(controlQuality.getTrash().getList()));
+        assertThat(goodsShop.equals(shop.getList()));
     }
 }
