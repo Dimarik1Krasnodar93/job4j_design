@@ -2,6 +2,7 @@ package ru.job4j.ood.srp;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
 import java.util.Calendar;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,6 +14,7 @@ class ReportEngineXmlTest {
     public void whenOldGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
+        now.set(2022, 11, 1 , 0, 0);
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
         Report engine = new ReportEngineXml(store);
@@ -43,5 +45,6 @@ class ReportEngineXmlTest {
                 .append(FormatOutput.SEPARATOR)
                 .append("</reportEngineXml>")
                 .append(FormatOutput.SEPARATOR);
+        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }

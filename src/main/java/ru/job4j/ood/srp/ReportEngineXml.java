@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 
-@XmlRootElement
+
 public class ReportEngineXml implements Report {
 
     private final Store store;
