@@ -36,17 +36,30 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
+        int number = 0;
+        int thisItem = 0;
         Iterator<MenuItemInfo> result = new Iterator<MenuItemInfo>() {
 
             DFSIterator iterator = new DFSIterator();
 
             @Override
             public boolean hasNext() {
-                return iterator.hasNext();
+                boolean boolNext = rootElements.size() >  thisItem;
+                if (!boolNext) {
+                    boolNext = iterator.hasNext();
+                }
+                return boolNext;
             }
 
             @Override
             public MenuItemInfo next() {
+                if (hasNext()) {
+                    if (thisItem < rootElements.size()) {
+                        thisItem++;
+                    }
+                } else {
+                    throw new NoSuchElementException("Has not next element");
+                }
                 return null;
             }
         };
