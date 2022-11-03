@@ -9,12 +9,15 @@ import ru.job4j.ood.lsp.store.Trash;
 import ru.job4j.ood.lsp.store.Warehouse;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class ControlQuality {
     private Store shop = new Shop();
     private Store trash = new Trash();
     private Store warehouse = new Warehouse();
 
+    public ControlQuality() {
+    }
 
     public Store getShop() {
         return shop;
@@ -28,8 +31,15 @@ public class ControlQuality {
         return warehouse;
     }
 
-    public ControlQuality() {
+    public void resort() {
+        List<Food> foodList = shop.getList();
+        foodList.addAll(trash.getList());
+        foodList.addAll(warehouse.getList());
+        for (Food food : foodList) {
+            add(food);
+        }
     }
+
     public void add(Food food) {
         shop.add(food);
         warehouse.add(food);
