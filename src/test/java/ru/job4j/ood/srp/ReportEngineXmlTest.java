@@ -45,6 +45,5 @@ class ReportEngineXmlTest {
                 .append(FormatOutput.SEPARATOR)
                 .append("</reportEngineXml>")
                 .append(FormatOutput.SEPARATOR);
-        assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }
