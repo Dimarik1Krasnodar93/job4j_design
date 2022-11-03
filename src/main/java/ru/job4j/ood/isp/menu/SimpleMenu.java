@@ -44,22 +44,11 @@ public class SimpleMenu implements Menu {
 
             @Override
             public boolean hasNext() {
-                boolean boolNext = rootElements.size() >  thisItem;
-                if (!boolNext) {
-                    boolNext = iterator.hasNext();
-                }
-                return boolNext;
+                return false;
             }
 
             @Override
             public MenuItemInfo next() {
-                if (hasNext()) {
-                    if (thisItem < rootElements.size()) {
-                        thisItem++;
-                    }
-                } else {
-                    throw new NoSuchElementException("Has not next element");
-                }
                 return null;
             }
         };

@@ -13,7 +13,7 @@ class ReportEngineJsonTest {
     public void whenOldGenerated() {
         MemStore store = new MemStore();
         Calendar now = Calendar.getInstance();
-        now.set(2022, 11, 1 , 0, 0, 0);
+        now.set(2022, 11, 1, 0, 0, 0);
         Employee worker = new Employee("Ivan", now, now, 100);
         store.add(worker);
         Report engine = new ReportEngineJson(store);
