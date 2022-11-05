@@ -7,9 +7,7 @@ import javax.xml.bind.Element;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
+import javax.xml.bind.annotation.*;
 import java.io.StringWriter;
 import java.text.SimpleDateFormat;
 import java.util.List;
@@ -34,7 +32,7 @@ public class ReportEngineXml implements Report {
 
     private void init() {
         try {
-            JAXBContext context = JAXBContext.newInstance(ReportEngineXml.class);
+            JAXBContext context = JAXBContext.newInstance(Employees.class);
             marshaller = context.createMarshaller();
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
         } catch (JAXBException ex) {
@@ -57,7 +55,8 @@ public class ReportEngineXml implements Report {
     }
 
 
-    @XmlRootElement(name = "employees")
+    @XmlRootElement(name = "employee")
+    @XmlAccessorType(XmlAccessType.FIELD)
     private static class Employees {
 
         private List<Employee> employees;
@@ -66,7 +65,9 @@ public class ReportEngineXml implements Report {
             this.employees = employees;
         }
 
-        public List<Employee> getEmployees() {
+        public Employees() {
+        }
+            public List<Employee> getEmployees() {
             return employees;
         }
 
