@@ -1,6 +1,7 @@
 package ru.job4j.ood.srp;
 
 import org.junit.jupiter.api.Test;
+import ru.job4j.ood.srp.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ class ReportEngineXmlTest {
         StringBuilder expect = new StringBuilder()
                 .append("<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>")
                 .append(FormatOutput.SEPARATOR)
-                .append("<employee>")
+                .append("<employees>")
                 .append(FormatOutput.SEPARATOR)
                 .append("    <employees>")
                 .append(FormatOutput.SEPARATOR)
@@ -46,8 +47,7 @@ class ReportEngineXmlTest {
                 .append(FormatOutput.SEPARATOR)
                 .append("    </employees>")
                 .append(FormatOutput.SEPARATOR)
-                .append("</employee>")
-                .append(FormatOutput.SEPARATOR);
+                .append("</employees>\n");
         assertThat(engine.generate(em -> true)).isEqualTo(expect.toString());
     }
 }

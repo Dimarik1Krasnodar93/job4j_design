@@ -55,7 +55,7 @@ public class ReportEngineXml implements Report {
     }
 
 
-    @XmlRootElement(name = "employee")
+    @XmlRootElement(name = "employees")
     @XmlAccessorType(XmlAccessType.FIELD)
     private static class Employees {
 
