@@ -1,14 +1,12 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.srp.design.report;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
+import ru.job4j.ood.srp.FormatOutput;
+import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.model.Employee;
+import ru.job4j.ood.srp.design.report.Report;
+
 import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.io.StringWriter;
 import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.List;
 import java.util.function.Predicate;
 
 public class ReportEngine implements Report {

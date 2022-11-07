@@ -1,8 +1,10 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.srp.design.report;
 
-import java.text.SimpleDateFormat;
-import java.util.Comparator;
-import java.util.List;
+import ru.job4j.ood.srp.FormatOutput;
+import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.model.Employee;
+import ru.job4j.ood.srp.design.report.Report;
+
 import java.util.function.Predicate;
 
 public class ReportEngineProgrammers implements Report {

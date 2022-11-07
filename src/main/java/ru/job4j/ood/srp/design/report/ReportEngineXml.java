@@ -1,15 +1,15 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.srp.design.report;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.model.Employee;
+import ru.job4j.ood.srp.design.report.Report;
 
-import javax.xml.bind.Element;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.annotation.*;
+import java.io.IOException;
 import java.io.StringWriter;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -20,10 +20,6 @@ public class ReportEngineXml implements Report {
     private final Store store;
 
     private Marshaller marshaller;
-
-    public ReportEngineXml() {
-        store = null;
-    }
 
     public ReportEngineXml(Store store) {
         this.store = store;
@@ -43,17 +39,17 @@ public class ReportEngineXml implements Report {
     @Override
     public String generate(Predicate<Employee> filter) {
         String result = "";
-        StringWriter stringwriter = new StringWriter();
-        try {
+        try (StringWriter stringwriter = new StringWriter()) {
             List<Employee> employees = store.findBy(filter);
             marshaller.marshal(new Employees(employees), stringwriter);
             result = stringwriter.toString();
         } catch (JAXBException ex) {
             ex.printStackTrace();
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
         return result;
     }
-
 
     @XmlRootElement(name = "employees")
     @XmlAccessorType(XmlAccessType.FIELD)

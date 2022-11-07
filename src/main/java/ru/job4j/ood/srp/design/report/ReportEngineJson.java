@@ -1,14 +1,14 @@
-package ru.job4j.ood.srp;
+package ru.job4j.ood.srp.design.report;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
+import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.model.Employee;
+import ru.job4j.ood.srp.design.report.Report;
 
-import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.function.Predicate;
 
-public class ReportEngineJson implements Report  {
+public class ReportEngineJson implements Report {
 
     private final Store store;
 

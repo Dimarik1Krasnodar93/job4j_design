@@ -1,18 +1,19 @@
 package ru.job4j.ood.srp;
 
 import org.junit.jupiter.api.Test;
-import ru.job4j.ood.srp.*;
+import ru.job4j.ood.srp.design.model.Employee;
+import ru.job4j.ood.srp.design.report.Report;
+import ru.job4j.ood.srp.design.report.ReportEngineProgrammers;
 
 import java.util.Calendar;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
-import static ru.job4j.ood.srp.ReportEngine.DATE_FORMAT;
+import static ru.job4j.ood.srp.design.report.ReportEngine.DATE_FORMAT;
 
 class ReportEngineProgrammersTest {
     @Test
     public void whenOldGenerated() {
-        MemStore store = new MemStore();
+        FormatOutput.MemStore store = new FormatOutput.MemStore();
         Calendar now = Calendar.getInstance();
         Employee worker2 = new Employee("Ivan", now, now, 300);
         store.add(worker2);
