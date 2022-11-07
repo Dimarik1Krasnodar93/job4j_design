@@ -63,7 +63,7 @@ public class ReportEngineXml implements Report {
 
         public Employees() {
         }
-            public List<Employee> getEmployees() {
+        public List<Employee> getEmployees() {
             return employees;
         }
 
