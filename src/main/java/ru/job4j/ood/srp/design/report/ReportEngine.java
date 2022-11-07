@@ -1,9 +1,8 @@
 package ru.job4j.ood.srp.design.report;
 
 import ru.job4j.ood.srp.FormatOutput;
-import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.store.Store;
 import ru.job4j.ood.srp.design.model.Employee;
-import ru.job4j.ood.srp.design.report.Report;
 
 import javax.xml.bind.annotation.XmlAttribute;
 import java.text.SimpleDateFormat;

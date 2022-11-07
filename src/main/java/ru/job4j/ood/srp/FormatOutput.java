@@ -1,6 +1,6 @@
 package ru.job4j.ood.srp;
 
-import ru.job4j.ood.srp.Store;
+import ru.job4j.ood.srp.design.store.Store;
 import ru.job4j.ood.srp.design.model.Employee;
 
 import java.text.SimpleDateFormat;

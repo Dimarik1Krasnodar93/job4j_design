@@ -7,10 +7,7 @@ import java.util.List;
 
 public abstract class AbstractStore implements Store {
     private final List<Food> goods = new ArrayList<>();
-
-    public AbstractStore() {
-
-    }
+    public static final int DISCOUNT = 15;
 
     @Override
     public List<Food> getList() {
@@ -22,6 +19,11 @@ public abstract class AbstractStore implements Store {
         return isNotExpired(food) ? goods.add(food) : false;
     }
 
+    @Override
+    public void setDiscount(Food food) {
+        float price = food.getprice();
+        food.setPrice((100 - DISCOUNT) * price / 100);
+    }
     protected abstract boolean isNotExpired(Food food);
 
 }

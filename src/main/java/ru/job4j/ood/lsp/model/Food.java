@@ -6,24 +6,27 @@ import java.time.LocalDateTime;
 
 public abstract class Food {
     protected String name;
-
-
-
     protected LocalDateTime expiryDate;
     protected LocalDateTime createDate;
     protected float price;
-    protected float discount;
 
     public Food() {
 
     }
 
-    public Food(String name, LocalDateTime expiryDate, LocalDateTime createDate, float price, float discount) {
+    public Food(String name, LocalDateTime expiryDate, LocalDateTime createDate, float price) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.createDate = createDate;
         this.price = price;
-        this.discount = discount;
+    }
+
+    public float getprice() {
+        return price;
+    }
+
+    public void setPrice(float price) {
+        this.price = price;
     }
 
     public LocalDateTime getExpiryDate() {
@@ -34,7 +37,4 @@ public abstract class Food {
         return createDate;
     }
 
-    public void setDiscount() {
-        price *= (100 - discount)  * 0.01;
-    }
 }
