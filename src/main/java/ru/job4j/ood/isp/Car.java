@@ -2,9 +2,6 @@ package ru.job4j.ood.isp;
 
 public abstract class Car implements Cars {
     protected double petrol;
-
-
-
     protected double fuelTank;
 
     public double getPetrol() {
