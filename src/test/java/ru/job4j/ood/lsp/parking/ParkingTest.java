@@ -33,23 +33,15 @@ class ParkingTest {
 
     @Test
     void testOneCarThreeTrack() {
-        Park parking = new Park(7, 0);
+        Park parking = new Park(5, 0);
         Car motocar1 = new MotorCar();
         Car track1 = new Track();
         Car track2 = new Track();
-        Car track3 = new Track();
-        Car track4 = new Track();
-        Car track5 = new Track();
-        Car track6 = new Track();
         parking.parkCar(motocar1);
         parking.parkCar(track1);
         parking.parkCar(track2);
-        parking.parkCar(track3);
-        parking.parkCar(track4);
-        parking.parkCar(track5);
-        parking.parkCar(track6);
         int expectedCars = 1;
-        int expectedTracks = 3;
+        int expectedTracks = 2;
         assertThat(parking.getCars()).isEqualTo(expectedCars);
         assertThat(parking.getTracks()).isEqualTo(expectedTracks);
     }
@@ -90,9 +82,6 @@ class ParkingTest {
         Park parking = new Park(0, 0);
         Track track1 = new Track(6);
         boolean trackParked = parking.parkCar(track1);
-        boolean expected = false;
-        assertThat(trackParked).isEqualTo(expected);
+        assertThat(trackParked).isFalse();
     }
-
-
 }

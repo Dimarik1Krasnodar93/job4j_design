@@ -13,7 +13,7 @@ public class Park implements Parking {
     private List<Car> carList;
     private List<Car> trackList;
 
-    Park(int sizeCar, int sizeTrack) {
+    public Park(int sizeCar, int sizeTrack) {
         this.sizeCar = sizeCar;
         this.sizeTrack = sizeTrack;
         carList = new ArrayList<>(sizeCar);
@@ -23,21 +23,22 @@ public class Park implements Parking {
     @Override
     public boolean parkCar(Car car) {
         boolean result = false;
-        if (car.getSize() == 1) {
-            if (busyCars < sizeCar) {
-                busyCars++;
-                carCount++;
-                result = true;
-            }
+        if (car.getSize() == MotorCar.CAR_SIZE && busyCars < sizeCar) {
+            busyCars++;
+            carCount++;
+            carList.add(car);
+            result = true;
         } else {
             if (busyTrack < sizeTrack) {
                 busyTrack++;
                 trackCount++;
+                trackList.add(car);
                 result = true;
             } else {
                if (busyCars + car.getSize() <= sizeCar) {
                    busyCars = busyCars + car.getSize();
                    trackCount++;
+                   trackList.add(car);
                    result = true;
                }
             }
@@ -55,24 +56,4 @@ public class Park implements Parking {
         return trackCount;
     }
 
-    @Override
-    public int getSizeCar() {
-        return sizeCar;
-    }
-
-    @Override
-    public int getEmptyCountCar() {
-        return sizeCar - busyCars;
-    }
-
-    @Override
-    public int getSizeTrack() {
-        return sizeTrack;
-    }
-
-
-    @Override
-    public int getEmptyCountTrack() {
-        return sizeTrack - busyTrack;
-    }
 }
