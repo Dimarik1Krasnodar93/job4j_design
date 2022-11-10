@@ -4,31 +4,16 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.*;
 
+
 class ParkingTest {
 
     @Test
     void testTwoCarsSixTrack() {
-        Park parking = new Park(1, 5);
-        Car motocar1 = new MotorCar();
-        Car motocar2 = new MotorCar();
-        Car track1 = new Track(2);
-        Car track2 = new Track(5);
-        Car track3 = new Track(2);
-        Car track4 = new Track(2);
-        Car track5 = new Track(2);
-        Car track6 = new Track(2);
-        parking.parkCar(motocar1);
-        parking.parkCar(motocar2);
-        parking.parkCar(track1);
-        parking.parkCar(track2);
-        parking.parkCar(track3);
-        parking.parkCar(track4);
-        parking.parkCar(track5);
-        parking.parkCar(track6);
-        int expectedCars = 1;
-        int expectedTracks = 5;
-        assertThat(parking.getCars()).isEqualTo(expectedCars);
-        assertThat(parking.getTracks()).isEqualTo(expectedTracks);
+        Park parking = new Park(1, 2);
+        parking.parkCar(new MotorCar());
+        assertThat(parking.parkCar(new MotorCar())).isFalse();
+        parking.parkCar(new Track(2));
+        assertThat(parking.parkCar(new Track(5))).isFalse();
     }
 
     @Test
