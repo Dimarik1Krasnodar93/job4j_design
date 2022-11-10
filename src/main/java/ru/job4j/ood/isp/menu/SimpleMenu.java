@@ -8,20 +8,26 @@ public class SimpleMenu implements Menu {
 
     @Override
     public boolean add(String parentName, String childName, ActionDelegate actionDelegate) {
-        if (parentName.equals("")) {
+        if (findMenuItem(childName).isPresent()) {
+            return false;
+        }
+        if (parentName.isEmpty()) {
             rootElements.add(new SimpleMenuItem(childName, actionDelegate));
         } else {
-            MenuItem parentItem = findItem(parentName).orElseThrow().menuItem;
+            Optional<ItemInfo> parentItem = findItem(parentName);
+            if (parentItem.isPresent()) {
+                rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+            }
         }
         return true;
     }
 
     private Optional<MenuItem> findMenuItem(String parent) {
         Optional<MenuItem> result = Optional.empty();
-        while (iterator().hasNext()) {
-            MenuItemInfo menuItemInfo = iterator().next();
-            if (parent.equals(menuItemInfo.getName())) {
-               result = Optional.of(menuItemInfo); // не понимаю
+        for (MenuItem menuItem : rootElements) {
+            if (parent.equals(parent)) {
+                result = Optional.of(menuItem);
+                break;
             }
         }
         return result;
@@ -29,9 +35,7 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Optional<MenuItemInfo> select(String itemName) {
-        Optional<MenuItemInfo> result = Optional.empty();
-
-        return result;
+        return findItem(itemName).map(i -> new MenuItemInfo(i.menuItem, itemName));
     }
 
     @Override
@@ -57,7 +61,16 @@ public class SimpleMenu implements Menu {
     }
 
     private Optional<ItemInfo> findItem(String name) {
-        return null;
+        Optional<ItemInfo> result = Optional.empty();
+        DFSIterator dfsIterator = new DFSIterator();
+        while (dfsIterator.hasNext()) {
+            ItemInfo itemInfo = dfsIterator.next();
+            if (name.equals(itemInfo.menuItem.getName())) {
+                result = Optional.of(itemInfo);
+                break;
+            }
+        }
+        return result;
     }
 
     private static class SimpleMenuItem implements MenuItem {
