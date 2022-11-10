@@ -11,12 +11,12 @@ class ParkingTest {
         Park parking = new Park(1, 5);
         Car motocar1 = new MotorCar();
         Car motocar2 = new MotorCar();
-        Car track1 = new Track();
-        Car track2 = new Track();
-        Car track3 = new Track();
-        Car track4 = new Track();
-        Car track5 = new Track();
-        Car track6 = new Track();
+        Car track1 = new Track(2);
+        Car track2 = new Track(5);
+        Car track3 = new Track(2);
+        Car track4 = new Track(2);
+        Car track5 = new Track(2);
+        Car track6 = new Track(2);
         parking.parkCar(motocar1);
         parking.parkCar(motocar2);
         parking.parkCar(track1);
@@ -35,8 +35,8 @@ class ParkingTest {
     void testOneCarThreeTrack() {
         Park parking = new Park(5, 0);
         Car motocar1 = new MotorCar();
-        Car track1 = new Track();
-        Car track2 = new Track();
+        Car track1 = new Track(2);
+        Car track2 = new Track(2);
         parking.parkCar(motocar1);
         parking.parkCar(track1);
         parking.parkCar(track2);
