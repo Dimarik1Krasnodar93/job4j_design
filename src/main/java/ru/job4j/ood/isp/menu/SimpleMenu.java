@@ -18,10 +18,10 @@ public class SimpleMenu implements Menu {
 
     private Optional<MenuItem> findMenuItem(String parent) {
         Optional<MenuItem> result = Optional.empty();
-        for (MenuItem menuItem : rootElements) {
-            if (parent.equals(parent)) {
-                result = Optional.of(menuItem);
-                break;
+        while (iterator().hasNext()) {
+            MenuItemInfo menuItemInfo = iterator().next();
+            if (parent.equals(menuItemInfo.getName())) {
+               result = Optional.of(menuItemInfo); // не понимаю
             }
         }
         return result;
@@ -44,12 +44,13 @@ public class SimpleMenu implements Menu {
 
             @Override
             public boolean hasNext() {
-                return false;
+                return iterator.hasNext();
             }
 
             @Override
             public MenuItemInfo next() {
-                return null;
+                ItemInfo itemInfo = iterator.next();
+                return new MenuItemInfo(itemInfo.menuItem, itemInfo.number);
             }
         };
         return result;
