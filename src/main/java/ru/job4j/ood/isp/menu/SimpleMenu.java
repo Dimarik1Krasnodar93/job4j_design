@@ -13,13 +13,15 @@ public class SimpleMenu implements Menu {
         }
         if (parentName.isEmpty()) {
             rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+            return true;
         } else {
             Optional<ItemInfo> parentItem = findItem(parentName);
             if (parentItem.isPresent()) {
                 rootElements.add(new SimpleMenuItem(childName, actionDelegate));
+                return true;
             }
         }
-        return true;
+        return false;
     }
 
     private Optional<MenuItem> findMenuItem(String parent) {
@@ -40,11 +42,9 @@ public class SimpleMenu implements Menu {
 
     @Override
     public Iterator<MenuItemInfo> iterator() {
-        int number = 0;
-        int thisItem = 0;
-        Iterator<MenuItemInfo> result = new Iterator<MenuItemInfo>() {
+        return new Iterator<>() {
 
-            DFSIterator iterator = new DFSIterator();
+            final DFSIterator iterator = new DFSIterator();
 
             @Override
             public boolean hasNext() {
@@ -57,7 +57,6 @@ public class SimpleMenu implements Menu {
                 return new MenuItemInfo(itemInfo.menuItem, itemInfo.number);
             }
         };
-        return result;
     }
 
     private Optional<ItemInfo> findItem(String name) {
