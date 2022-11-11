@@ -8,7 +8,7 @@ public abstract class Food {
     protected String name;
     protected LocalDateTime expiryDate;
     protected LocalDateTime createDate;
-    protected float price;
+    protected double price;
 
     public Food() {
 
@@ -21,11 +21,11 @@ public abstract class Food {
         this.price = price;
     }
 
-    public float getprice() {
+    public double getprice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

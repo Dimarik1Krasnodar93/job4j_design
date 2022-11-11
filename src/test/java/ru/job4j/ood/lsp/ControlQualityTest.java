@@ -15,7 +15,6 @@ class ControlQualityTest {
 
     @Test
     void testMain() {
-
         ControlQuality controlQuality = new ControlQuality();
         Food food1 = new Bread("Bread1", LocalDateTime.of(2025, 12, 21, 0, 0),
                 LocalDateTime.of(2022, 10, 21, 0, 0),  50);

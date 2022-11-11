@@ -10,16 +10,15 @@ public class Shop extends AbstractStore {
     public final static int PERCENT_FROM_DISCOUNT = 75;
     public final static int PERCENT_TO = 75;
     public final static int PERCENT_FROM = 25;
-
+    public final static int DISCOUNT = 5;
+    private final static Predicate<Double> DISCOUNT_CONDITION = p -> p >= PERCENT_FROM && p <= PERCENT_TO;
     @Override
     public boolean add(Food food) {
         boolean isAdded = false;
         if (isNotExpired(food)) {
             isAdded = super.add(food);
-            double percentExpiry = Quality.getPercentExpiry(food.getCreateDate(), food.getExpiryDate());
             if (isAdded) {
-                Predicate<Food> predicateShopDiscount = i -> percentExpiry > PERCENT_FROM_DISCOUNT && percentExpiry < PERCENT_TO_DISCOUNT;
-                if (predicateShopDiscount.test(food)) {
+                if (DISCOUNT_CONDITION.test(food.getprice())) {
                     setDiscount(food);
                 }
             }
@@ -28,8 +27,11 @@ public class Shop extends AbstractStore {
     }
 
     protected boolean isNotExpired(Food food) {
-        double percentExpiry = Quality.getPercentExpiry(food.getCreateDate(), food.getExpiryDate());
-        Predicate<Food> predicateShop = i -> percentExpiry >= PERCENT_FROM && percentExpiry <= PERCENT_TO;
-        return predicateShop.test(food);
+        return DISCOUNT_CONDITION.test(Quality.getPercentExpiry(food.getCreateDate(), food.getExpiryDate()));
+    }
+
+    public void setDiscount(Food food) {
+        double price = food.getprice();
+        food.setPrice((100 - DISCOUNT) * price / 100);
     }
 }

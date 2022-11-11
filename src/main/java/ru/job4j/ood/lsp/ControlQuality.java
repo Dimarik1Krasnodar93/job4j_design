@@ -9,14 +9,20 @@ import ru.job4j.ood.lsp.store.Trash;
 import ru.job4j.ood.lsp.store.Warehouse;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlQuality {
     private Store shop = new Shop();
     private Store trash = new Trash();
     private Store warehouse = new Warehouse();
+    private List<Store> listStore;
 
     public ControlQuality() {
+        listStore = new ArrayList<>();
+        listStore.add(shop);
+        listStore.add(trash);
+        listStore.add(warehouse);
     }
 
     public Store getShop() {

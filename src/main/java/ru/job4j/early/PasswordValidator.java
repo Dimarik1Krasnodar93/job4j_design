@@ -1,12 +1,9 @@
 package ru.job4j.early;
 
-import java.lang.reflect.Array;
-import java.util.Arrays;
+
 import java.util.Locale;
-import java.util.function.Function;
 import java.util.function.Predicate;
-import java.util.regex.Pattern;
-import java.util.stream.Stream;
+
 
 public class PasswordValidator {
     private static final String PASSWORD_REGEX = "^(?=.*[`@#$%^&+=_.])";
@@ -55,6 +52,5 @@ public class PasswordValidator {
         }
         return false;
     }
-
 
 }
