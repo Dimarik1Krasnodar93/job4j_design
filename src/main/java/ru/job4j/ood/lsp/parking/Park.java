@@ -22,28 +22,25 @@ public class Park implements Parking {
 
     @Override
     public boolean parkCar(Car car) {
-        boolean result = false;
         if (car.getSize() == MotorCar.CAR_SIZE && busyCars < sizeCar) {
             busyCars++;
             carCount++;
             carList.add(car);
-            result = true;
-        } else {
-            if (busyTrack < sizeTrack) {
-                busyTrack++;
-                trackCount++;
-                trackList.add(car);
-                result = true;
-            } else {
-               if (busyCars + car.getSize() <= sizeCar) {
-                   busyCars = busyCars + car.getSize();
-                   trackCount++;
-                   trackList.add(car);
-                   result = true;
-               }
-            }
+            return true;
         }
-        return result;
+        if (car.getSize() > MotorCar.CAR_SIZE && busyTrack < sizeTrack) {
+            busyTrack++;
+            trackCount++;
+            trackList.add(car);
+            return true;
+        }
+        if (busyCars + car.getSize() <= sizeCar) {
+            busyCars = busyCars + car.getSize();
+            trackCount++;
+            trackList.add(car);
+            return true;
+        }
+        return false;
     }
 
     @Override

@@ -8,29 +8,14 @@ import static org.assertj.core.api.Assertions.*;
 
 class ParkingTest {
 
-    @Disabled
+
     @Test
-    void testTwoCarsSixTrack() {
+    void testOneCarTwoTrack() {
         Park parking = new Park(1, 2);
         parking.parkCar(new MotorCar());
         assertThat(parking.parkCar(new MotorCar())).isFalse();
         parking.parkCar(new Track(2));
-        assertThat(parking.parkCar(new Track(5))).isFalse();
-    }
-
-    @Test
-    void testOneCarThreeTrack() {
-        Park parking = new Park(5, 0);
-        Car motocar1 = new MotorCar();
-        Car track1 = new Track(2);
-        Car track2 = new Track(2);
-        parking.parkCar(motocar1);
-        parking.parkCar(track1);
-        parking.parkCar(track2);
-        int expectedCars = 1;
-        int expectedTracks = 2;
-        assertThat(parking.getCars()).isEqualTo(expectedCars);
-        assertThat(parking.getTracks()).isEqualTo(expectedTracks);
+        assertThat(parking.parkCar(new Track(5))).isTrue();
     }
 
     @Test
@@ -60,7 +45,6 @@ class ParkingTest {
 
     @Test
     void testTrackAndTrackSizeException() {
-        Park parking = new Park(0, 3);
         assertThatThrownBy(() -> new Track(0)).isInstanceOf(IllegalArgumentException.class);
     }
 
