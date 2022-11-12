@@ -1,12 +1,12 @@
 package ru.job4j.early;
 
 
+import java.util.Arrays;
 import java.util.Locale;
 import java.util.function.Predicate;
 
 
 public class PasswordValidator {
-    private static final String PASSWORD_REGEX = "^(?=.*[`@#$%^&+=_.])";
 
     public static String validate(String password) {
         if (password == null) {
@@ -19,10 +19,10 @@ public class PasswordValidator {
         Character[] characterPass = password.chars()
                 .mapToObj(ch -> (char) ch)
                 .toArray(Character[]::new);
-        if (!checkPass(characterPass, i -> i == Character.toTitleCase(i) && Character.isAlphabetic(i))) {
+        if (!checkPass(characterPass, i -> i.equals(Character.toTitleCase(i)) && Character.isAlphabetic(i))) {
             throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
-        if (!checkPass(characterPass, i -> i == Character.toLowerCase(i)  && Character.isAlphabetic(i))) {
+        if (!checkPass(characterPass, i -> i.equals(Character.toLowerCase(i))  && Character.isAlphabetic(i))) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
         if (!checkPass(characterPass, i -> Character.isDigit(i))) {
@@ -31,13 +31,9 @@ public class PasswordValidator {
         if (!checkPass(characterPass,  i -> !Character.isDigit(i) && !Character.isAlphabetic(i))) {
             throw new IllegalArgumentException("Password should contain at least one special symbol");
         }
-
         String passwordLowercase = password.toLowerCase(Locale.ROOT);
-        if (passwordLowercase.contains("qwerty")
-                ||  passwordLowercase.contains("12345")
-                ||  passwordLowercase.contains("password")
-                ||  passwordLowercase.contains("admin")
-                ||  passwordLowercase.contains("user")) {
+        String[] strExclude = {"qwerty", "12345", "password", "admin", "user"};
+        if (Arrays.stream(strExclude).filter(i -> passwordLowercase.contains(i)).count() > 0) {
             throw new IllegalArgumentException("Password shouldn't contain substrings: qwerty, 12345, password, admin, user");
         }
         return password;
