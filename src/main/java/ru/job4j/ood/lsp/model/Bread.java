@@ -8,10 +8,7 @@ public class Bread extends Food {
     public Bread() {
 
     }
-    public Bread(String name, LocalDateTime expiryDate, LocalDateTime createDate, float price) {
-        this.name = name;
-        this.expiryDate = expiryDate;
-        this.createDate = createDate;
-        this.price = price;
+    public Bread(String name, LocalDateTime expiryDate, LocalDateTime createDate, double price, double discount) {
+        super(name, expiryDate, createDate, price, discount);
     }
 }

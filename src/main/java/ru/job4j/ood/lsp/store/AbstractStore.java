@@ -7,7 +7,6 @@ import java.util.List;
 
 public abstract class AbstractStore implements Store {
     private final List<Food> goods = new ArrayList<>();
-    public static final int DISCOUNT = 15;
 
     @Override
     public List<Food> getList() {

@@ -25,6 +25,10 @@ public class ControlQuality {
         listStore.add(warehouse);
     }
 
+    public ControlQuality(List<Store> listStore) {
+        this.listStore = listStore;
+    }
+
     public Store getShop() {
         return shop;
     }
@@ -46,6 +50,14 @@ public class ControlQuality {
         }
     }
 
+    public void resort(Food food) {
+        for (Store store : listStore) {
+            if (store.add(food)) {
+                break;
+            }
+        }
+    }
+
     public void add(Food food) {
         shop.add(food);
         warehouse.add(food);
@@ -55,19 +67,19 @@ public class ControlQuality {
     public static void main(String[] args) {
         ControlQuality controlQuality = new ControlQuality();
         Food food1 = new Bread("Bread1", LocalDateTime.of(2025, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 10, 21, 0, 0),  50);
-        Food food2 = new Bread("Bread2", LocalDateTime.of(2022, 11, 21, 0, 0),
-                LocalDateTime.of(2022, 10, 24, 0, 0),  50);
+                LocalDateTime.of(2022, 10, 21, 0, 0),  50, 5);
+        Food food2 = new Bread("Bread2", LocalDateTime.of(2022, 11, 11, 0, 0),
+                LocalDateTime.of(2022, 10, 24, 0, 0),  50, 5);
         Food food3 = new Meat("Meat", LocalDateTime.of(2022, 9, 21, 0, 0),
-                LocalDateTime.of(2022, 8, 21, 0, 0),  50);
+                LocalDateTime.of(2022, 8, 21, 0, 0),  50, 5);
         Food food4 = new Meat("Meat", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 9, 21, 0, 0),  50);
+                LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
         Food food5 = new Meat("Meat", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 1, 21, 0, 0),  50);
+                LocalDateTime.of(2022, 1, 21, 0, 0),  50, 5);
         Food food65 = new Meat("Meat", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 3, 21, 0, 0),  50);
+                LocalDateTime.of(2022, 3, 21, 0, 0),  50, 5);
         Food food6 = new Meat("Meat", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 9, 21, 0, 0),  50);
+                LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
         controlQuality.add(food1);
         controlQuality.add(food2);
         controlQuality.add(food3);
@@ -75,6 +87,4 @@ public class ControlQuality {
         controlQuality.add(food5);
         controlQuality.add(food6);
     }
-
-
 }

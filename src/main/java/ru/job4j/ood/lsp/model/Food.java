@@ -9,16 +9,22 @@ public abstract class Food {
     protected LocalDateTime expiryDate;
     protected LocalDateTime createDate;
     protected double price;
+    protected double discount;
 
     public Food() {
 
     }
 
-    public Food(String name, LocalDateTime expiryDate, LocalDateTime createDate, float price) {
+    public Food(String name, LocalDateTime expiryDate, LocalDateTime createDate, double price, double discount) {
         this.name = name;
         this.expiryDate = expiryDate;
         this.createDate = createDate;
         this.price = price;
+        this.discount = discount;
+    }
+
+    public double getDiscount() {
+        return discount;
     }
 
     public double getprice() {
