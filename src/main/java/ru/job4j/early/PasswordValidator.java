@@ -19,10 +19,10 @@ public class PasswordValidator {
         Character[] characterPass = password.chars()
                 .mapToObj(ch -> (char) ch)
                 .toArray(Character[]::new);
-        if (!checkPass(characterPass, i -> i.equals(Character.toTitleCase(i)) && Character.isAlphabetic(i))) {
+        if (!checkPass(characterPass, i -> Character.isUpperCase(i))) {
             throw new IllegalArgumentException("Password should contain at least one uppercase letter");
         }
-        if (!checkPass(characterPass, i -> i.equals(Character.toLowerCase(i))  && Character.isAlphabetic(i))) {
+        if (!checkPass(characterPass, i -> Character.isLowerCase(i))) {
             throw new IllegalArgumentException("Password should contain at least one lowercase letter");
         }
         if (!checkPass(characterPass, i -> Character.isDigit(i))) {
