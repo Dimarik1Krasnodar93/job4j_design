@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 public class Trash extends AbstractStore {
 
-    public static final int TERM_TRASH_PERCENT = 100;
-    public static final Predicate<Double> PREDICATE_TRASH = i -> i > TERM_TRASH_PERCENT;
+    public static final int PERCENT_TO_TRASH = 100;
+    public static final Predicate<Double> PREDICATE_TRASH = i -> i > PERCENT_TO_TRASH;
 
     protected boolean isNotExpired(Food food) {
         double percentExpiry = Quality.getPercentExpiry(food.getCreateDate(), food.getExpiryDate());

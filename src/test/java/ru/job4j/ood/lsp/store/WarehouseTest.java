@@ -17,20 +17,20 @@ class WarehouseTest {
 
     @Test
     void add() {
-        Food food1 = new Bread("Bread1", LocalDateTime.of(2025, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 10, 21, 0, 0),  50, 5);
-        Food food2 = new Bread("Bread2", LocalDateTime.of(2022, 11, 21, 0, 0),
-                LocalDateTime.of(2022, 10, 24, 0, 0),  50, 5);
-        Food food3 = new Meat("Meat1", LocalDateTime.of(2022, 9, 21, 0, 0),
-                LocalDateTime.of(2022, 8, 21, 0, 0),  50, 5);
-        Food food4 = new Meat("Meat2", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
-        Food food5 = new Meat("Meat3", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 1, 21, 0, 0),  50, 5);
-        Food food6 = new Meat("Meat4", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 3, 21, 0, 0),  50, 5);
-        Food food7 = new Meat("Meat5", LocalDateTime.of(2022, 12, 21, 0, 0),
-                LocalDateTime.of(2022, 9, 21, 0, 0),  50, 5);
+        Food food1 = new Bread("Bread1", LocalDateTime.now().plusDays(800),
+                LocalDateTime.now().minusDays(50),  50, 5);
+        Food food2 = new Bread("Bread2", LocalDateTime.now().plusDays(20),
+                LocalDateTime.now().minusDays(10),  50, 5);
+        Food food3 = new Meat("Meat1", LocalDateTime.now().minusDays(40),
+                LocalDateTime.now().minusDays(110),  50, 5);
+        Food food4 = new Meat("Meat2", LocalDateTime.now().plusDays(50),
+                LocalDateTime.now().minusDays(70),  50, 5);
+        Food food5 = new Meat("Meat3", LocalDateTime.now().plusDays(50),
+                LocalDateTime.now().minusDays(220),  50, 5);
+        Food food6 = new Meat("Meat4", LocalDateTime.now().plusDays(50),
+                LocalDateTime.now().minusDays(140),  50, 5);
+        Food food7 = new Meat("Meat5", LocalDateTime.now().plusDays(50),
+                LocalDateTime.now().minusDays(30),  50, 5);
         Warehouse warehouse = new Warehouse();
         warehouse.add(food1);
         warehouse.add(food2);

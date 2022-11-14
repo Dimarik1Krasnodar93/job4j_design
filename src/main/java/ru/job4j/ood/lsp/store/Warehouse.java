@@ -6,8 +6,8 @@ import java.util.function.Predicate;
 
 public class Warehouse extends AbstractStore {
 
-    public static final int TERM_TO_PERCENT = 25;
-    public static final Predicate<Double> PREDICATE_WAREHOUSE = i -> i <= TERM_TO_PERCENT;
+    public static final int PERCENT_TO_WAREHOUSE = 25;
+    public static final Predicate<Double> PREDICATE_WAREHOUSE = i -> i <= PERCENT_TO_WAREHOUSE;
     protected boolean isNotExpired(Food food) {
         double percentExpiry = Quality.getPercentExpiry(food.getCreateDate(), food.getExpiryDate());
         return PREDICATE_WAREHOUSE.test(percentExpiry);

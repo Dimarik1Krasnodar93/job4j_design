@@ -6,9 +6,9 @@ import java.util.function.Predicate;
 
 public class Shop extends AbstractStore {
 
-    public final static int TERM_PERCENT_TO = 75;
-    private final static Predicate<Double> PREDICATE_SHOP = p -> p >= Warehouse.TERM_TO_PERCENT && p <= TERM_PERCENT_TO;
-    private final static Predicate<Double> PREDICATE_CONDITION = p -> p >= TERM_PERCENT_TO;
+    public final static int PERCENT_TO_SHOP = 75;
+    private final static Predicate<Double> PREDICATE_SHOP = p -> p > Warehouse.PERCENT_TO_WAREHOUSE && p <= PERCENT_TO_SHOP;
+    private final static Predicate<Double> PREDICATE_CONDITION = p -> p >= PERCENT_TO_SHOP;
     @Override
     public boolean add(Food food) {
         boolean isAdded = false;
