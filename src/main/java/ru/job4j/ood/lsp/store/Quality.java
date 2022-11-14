@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 
 public class Quality {
     public static double getPercentExpiry(LocalDateTime createDate, LocalDateTime expiryDate) {
-        return  100 * (System.currentTimeMillis() - Timestamp.valueOf(expiryDate).getTime())
+        return 100 - 100 * (Timestamp.valueOf(expiryDate).getTime() - System.currentTimeMillis())
                 / (Timestamp.valueOf(expiryDate).getTime() - Timestamp.valueOf(createDate).getTime());
     }
 }

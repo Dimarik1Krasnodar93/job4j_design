@@ -1,5 +1,6 @@
 package ru.job4j.ood.lsp.store;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import ru.job4j.ood.lsp.model.Bread;
 import ru.job4j.ood.lsp.model.Food;
@@ -12,6 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
 
+@Disabled
 class TrashTest {
 
     @Test
