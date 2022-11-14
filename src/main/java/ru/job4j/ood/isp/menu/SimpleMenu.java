@@ -11,7 +11,7 @@ public class SimpleMenu implements Menu {
         if (findMenuItem(childName).isPresent()) {
             return false;
         }
-        if (parentName.isEmpty()) {
+        if (parentName == null) {
             rootElements.add(new SimpleMenuItem(childName, actionDelegate));
             return true;
         } else {
@@ -27,7 +27,7 @@ public class SimpleMenu implements Menu {
     private Optional<MenuItem> findMenuItem(String parent) {
         Optional<MenuItem> result = Optional.empty();
         for (MenuItem menuItem : rootElements) {
-            if (parent.equals(parent)) {
+            if (menuItem.getName().equals(parent)) {
                 result = Optional.of(menuItem);
                 break;
             }
