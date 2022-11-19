@@ -11,7 +11,6 @@ public class SimpleMenuTest {
 
     public static final ActionDelegate STUB_ACTION = System.out::println;
 
-    @Disabled
     @Test
     public void whenAddThenReturnSame() {
         Menu menu = new SimpleMenu();
